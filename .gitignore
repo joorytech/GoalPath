@@ -1,0 +1,20 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.env
+.venv/
+env/
+venv/
+
+# Firebase & Secret Keys
+serviceAccountKey.json
+*serviceAccountKey*.json
+*firebase-adminsdk*.json
+*.pem
+*.key
+
+# Database & Logs
+*.db
+*.sqlite3
+*.log
