@@ -22,22 +22,29 @@ document.addEventListener('DOMContentLoaded', async () => {
 });
 
 // Toast notification helper
-function showToast(message, icon = 'check_circle') {
+function showToast(message, icon = 'check_circle', isError = false) {
   let container = document.getElementById('toast-container');
   if (!container) {
     container = document.createElement('div');
     container.id = 'toast-container';
     document.body.appendChild(container);
   }
+  const isErr = isError || icon === 'error' || icon === 'warning';
+  const iconName = icon === 'error' ? 'error' : (icon === 'warning' ? 'warning' : icon);
+  const iconColor = isErr ? (icon === 'warning' ? 'text-amber-500' : 'text-red-500') : 'text-[#0D9488]';
+  const borderColor = isErr ? (icon === 'warning' ? 'border-amber-300 dark:border-amber-700' : 'border-red-300 dark:border-red-700') : 'border-surface-lavender-deep';
+
   const toast = document.createElement('div');
-  toast.className = 'toast-msg flex items-center gap-2';
-  toast.innerHTML = `<span class="material-symbols-outlined text-[20px] text-[#0D9488]">${icon}</span><span>${message}</span>`;
+  toast.className = `toast-msg flex items-start gap-2.5 max-w-md shadow-lg border ${borderColor} text-right`;
+  toast.innerHTML = `<span class="material-symbols-outlined text-[22px] shrink-0 mt-0.5 ${iconColor}">${iconName}</span><span class="text-sm leading-relaxed">${escapeHtml(message)}</span>`;
   container.appendChild(toast);
+  
+  const duration = isErr ? 7000 : 3500;
   setTimeout(() => {
     toast.style.opacity = '0';
     toast.style.transform = 'translateY(10px)';
     setTimeout(() => toast.remove(), 300);
-  }, 3500);
+  }, duration);
 }
 
 // User Profile & Settings Sync
@@ -339,7 +346,42 @@ async function handleRegisterSubmit(e) {
   }
 
   try {
+    // 1. First attempt registration with Firebase Client Authentication if available
+    let firebaseUser = null;
+    if (window.FirebaseAuth && window.FirebaseAuth.createUserWithEmailAndPassword) {
+      try {
+        const userCredential = await window.FirebaseAuth.createUserWithEmailAndPassword(
+          window.FirebaseAuth.auth,
+          email,
+          pass || 'pass123'
+        );
+        firebaseUser = userCredential.user;
+        if (firebaseUser && name && window.FirebaseAuth.updateProfile) {
+          try {
+            await window.FirebaseAuth.updateProfile(firebaseUser, { displayName: name });
+          } catch (profileErr) {
+            console.warn('Could not update Firebase displayName:', profileErr);
+          }
+        }
+      } catch (fbErr) {
+        console.error('🔥 Firebase Auth Error Details:', fbErr);
+        const formatted = window.FirebaseAuth.formatFirebaseAuthError ? window.FirebaseAuth.formatFirebaseAuthError(fbErr) : { display: fbErr.message };
+        // Display the exact Firebase error message and code directly to user
+        showToast(`خطأ في Firebase Auth: ${formatted.display}`, 'error');
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = `<span>إنشاء حساب</span><span class="material-symbols-outlined text-[20px]">arrow_forward</span>`;
+        }
+        return;
+      }
+    }
+
+    // 2. Sync / Create user in backend Firestore database
     const res = await GoalPathAPI.register(name, email, pass || 'pass123');
+    if (res.error) {
+      showToast(`خطأ: ${res.error}`, 'error');
+      return;
+    }
     if (res.user) {
       AppState.user = res.user;
       localStorage.setItem('goalpath_user_id', res.user.id);
@@ -354,7 +396,8 @@ async function handleRegisterSubmit(e) {
     }
   } catch (err) {
     console.error('Registration error:', err);
-    showToast('حدث خطأ أثناء إنشاء الحساب', 'error');
+    const detail = err?.message || err?.error || String(err);
+    showToast(`فشل إنشاء الحساب: ${detail}`, 'error');
   } finally {
     if (submitBtn) {
       submitBtn.disabled = false;
@@ -380,7 +423,32 @@ async function handleLoginSubmit(e) {
   }
 
   try {
+    // 1. Attempt Firebase Auth sign in if client auth is loaded
+    if (window.FirebaseAuth && window.FirebaseAuth.signInWithEmailAndPassword && pass) {
+      try {
+        await window.FirebaseAuth.signInWithEmailAndPassword(
+          window.FirebaseAuth.auth,
+          email,
+          pass
+        );
+      } catch (fbErr) {
+        console.error('🔥 Firebase Login Error Details:', fbErr);
+        const formatted = window.FirebaseAuth.formatFirebaseAuthError ? window.FirebaseAuth.formatFirebaseAuthError(fbErr) : { display: fbErr.message };
+        showToast(`خطأ في تسجيل الدخول: ${formatted.display}`, 'error');
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = `<span>تسجيل الدخول</span><span class="material-symbols-outlined text-[20px]">arrow_forward</span>`;
+        }
+        return;
+      }
+    }
+
+    // 2. Login to backend API / Firestore
     const res = await GoalPathAPI.login('', email, pass || 'pass123');
+    if (res.error) {
+      showToast(`خطأ: ${res.error}`, 'error');
+      return;
+    }
     if (res.user) {
       AppState.user = res.user;
       localStorage.setItem('goalpath_user_id', res.user.id);
@@ -395,7 +463,8 @@ async function handleLoginSubmit(e) {
     }
   } catch (err) {
     console.error('Login error:', err);
-    showToast('حدث خطأ أثناء تسجيل الدخول', 'error');
+    const detail = err?.message || err?.error || String(err);
+    showToast(`فشل تسجيل الدخول: ${detail}`, 'error');
   } finally {
     if (submitBtn) {
       submitBtn.disabled = false;
