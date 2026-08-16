@@ -1,0 +1,323 @@
+<!DOCTYPE html><html dir="rtl" lang="ar"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>GoalPath - AI Plan Generation</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+                "secondary-fixed-dim": "#deb7ff",
+                "outline": "#7d7480",
+                "surface-lavender-deep": "#CCADD9",
+                "surface-container-highest": "#f1dbf8",
+                "tertiary-container": "#006058",
+                "tertiary-fixed-dim": "#6bd8cb",
+                "on-surface-variant": "#4c444f",
+                "surface-container": "#fae8ff",
+                "action-purple-dark": "#532D75",
+                "background": "#fff7fc",
+                "surface-variant": "#f1dbf8",
+                "surface": "#fff7fc",
+                "action-purple-primary": "#6D428F",
+                "tertiary-fixed": "#89f5e7",
+                "on-error-container": "#93000a",
+                "on-background": "#23162b",
+                "on-secondary-container": "#613b84",
+                "error": "#ba1a1a",
+                "on-tertiary-fixed": "#00201d",
+                "on-tertiary-container": "#6fdcce",
+                "secondary-container": "#d9acfe",
+                "on-tertiary": "#ffffff",
+                "tertiary": "#004640",
+                "on-tertiary-fixed-variant": "#005049",
+                "secondary-fixed": "#f1dbff",
+                "outline-variant": "#cec3d1",
+                "on-secondary": "#ffffff",
+                "inverse-primary": "#e1b6ff",
+                "on-secondary-fixed": "#2d014f",
+                "inverse-on-surface": "#fcecff",
+                "surface-bright": "#fff7fc",
+                "on-primary-fixed": "#2e004e",
+                "on-primary-container": "#e3bbff",
+                "surface-tint": "#774b99",
+                "on-secondary-fixed-variant": "#5b357d",
+                "inverse-surface": "#392b41",
+                "primary": "#542a76",
+                "primary-fixed-dim": "#e1b6ff",
+                "surface-container-low": "#fdefff",
+                "accent-amber": "#F59E0B",
+                "on-surface": "#23162b",
+                "primary-fixed": "#f2daff",
+                "secondary": "#744d97",
+                "surface-container-lowest": "#ffffff",
+                "progress-teal": "#0D9488",
+                "primary-container": "#6d428f",
+                "surface-lavender-light": "#E1CCE8",
+                "on-primary-fixed-variant": "#5d337f",
+                "on-error": "#ffffff",
+                "error-container": "#ffdad6",
+                "surface-container-high": "#f7e1fe",
+                "on-primary": "#ffffff",
+                "surface-dim": "#e8d3ef"
+        },
+        "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+        },
+        "spacing": {
+                "container-max": "1280px",
+                "xs": "4px",
+                "sm": "12px",
+                "base": "8px",
+                "lg": "32px",
+                "gutter": "24px",
+                "md": "20px",
+                "margin-mobile": "16px",
+                "xl": "48px"
+        },
+        "fontFamily": {
+                "title-md": [
+                        "IBM Plex Sans Arabic"
+                ],
+                "body-md": [
+                        "IBM Plex Sans Arabic"
+                ],
+                "headline-lg-mobile": [
+                        "IBM Plex Sans Arabic"
+                ],
+                "label-md": [
+                        "IBM Plex Sans Arabic"
+                ],
+                "label-sm": [
+                        "IBM Plex Sans Arabic"
+                ],
+                "headline-lg": [
+                        "IBM Plex Sans Arabic"
+                ],
+                "body-lg": [
+                        "IBM Plex Sans Arabic"
+                ],
+                "display-lg": [
+                        "IBM Plex Sans Arabic"
+                ]
+        },
+        "fontSize": {
+                "title-md": [
+                        "20px",
+                        {
+                                "lineHeight": "28px",
+                                "fontWeight": "600"
+                        }
+                ],
+                "body-md": [
+                        "16px",
+                        {
+                                "lineHeight": "24px",
+                                "fontWeight": "400"
+                        }
+                ],
+                "headline-lg-mobile": [
+                        "24px",
+                        {
+                                "lineHeight": "32px",
+                                "fontWeight": "600"
+                        }
+                ],
+                "label-md": [
+                        "14px",
+                        {
+                                "lineHeight": "20px",
+                                "letterSpacing": "0.02em",
+                                "fontWeight": "500"
+                        }
+                ],
+                "label-sm": [
+                        "12px",
+                        {
+                                "lineHeight": "16px",
+                                "letterSpacing": "0.04em",
+                                "fontWeight": "500"
+                        }
+                ],
+                "headline-lg": [
+                        "32px",
+                        {
+                                "lineHeight": "40px",
+                                "fontWeight": "600"
+                        }
+                ],
+                "body-lg": [
+                        "18px",
+                        {
+                                "lineHeight": "28px",
+                                "fontWeight": "400"
+                        }
+                ],
+                "display-lg": [
+                        "40px",
+                        {
+                                "lineHeight": "52px",
+                                "fontWeight": "700"
+                        }
+                ]
+        }
+},
+    },
+  }
+</script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .ai-pulse {
+            animation: pulse-ring 2s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+        }
+        @keyframes pulse-ring {
+            0% { transform: scale(0.8); box-shadow: 0 0 0 0 rgba(109, 66, 143, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(109, 66, 143, 0); }
+            100% { transform: scale(0.8); box-shadow: 0 0 0 0 rgba(109, 66, 143, 0); }
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .timeline-line {
+            position: absolute;
+            right: 24px;
+            top: 16px;
+            bottom: 16px;
+            width: 2px;
+            background: linear-gradient(to bottom, theme('colors.action-purple-primary') 0%, theme('colors.surface-lavender-deep') 100%);
+            z-index: 0;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="text-on-background font-body-md antialiased min-h-screen pb-32 bg-surface-container-lowest">
+<!-- TopAppBar (From JSON, modified for RTL standard flex flow) -->
+<header class="fixed top-0 w-full z-50 dark:bg-surface-dim flat no shadows flex items-center justify-between px-margin-mobile h-16 transition-colors bg-surface-container-lowest">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-action-purple-primary dark:text-primary-fixed-dim" style="font-variation-settings: 'FILL' 1;">target</span>
+<span class="font-display-lg text-display-lg font-bold text-action-purple-primary dark:text-primary-fixed">GoalPath</span>
+</div>
+<button class="hover:bg-surface-lavender-deep transition-colors active:scale-95 p-2 rounded-full">
+<span class="material-symbols-outlined text-on-surface-variant dark:text-outline">notifications</span>
+</button>
+</header>
+<!-- Main Content Canvas (Navigation suppressed for focused task) -->
+<main class="pt-24 px-margin-mobile md:px-xl max-w-container-max mx-auto w-full">
+<!-- Header Section -->
+<section class="flex flex-col items-center text-center mb-lg">
+<div class="relative w-16 h-16 mb-sm flex items-center justify-center">
+<div class="absolute inset-0 bg-action-purple-primary rounded-full opacity-20 ai-pulse"></div>
+<div class="relative z-10 w-12 h-12 bg-surface-lavender-deep rounded-full shadow-lg flex items-center justify-center border border-action-purple-primary/30" style="background-color: rgb(226, 201, 157);">
+<span class="material-symbols-outlined text-action-purple-dark text-3xl" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+</div>
+</div>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-action-purple-primary max-w-sm">
+                دعنا نحول هدفك إلى خطة قابلة للتنفيذ
+            </h1>
+</section>
+<!-- User Input Display -->
+<section class="mb-lg">
+<div class="bg-surface-lavender-deep rounded-xl p-md shadow-[0px_4px_20px_rgba(15,23,42,0.05)] border border-surface-lavender-deep flex items-start gap-sm">
+<span class="material-symbols-outlined text-action-purple-dark mt-1">format_quote</span>
+<p class="font-title-md text-title-md text-action-purple-dark italic">أريد تعلم Python خلال 3 أشهر</p>
+</div>
+</section>
+<!-- AI Plan Output (Bento/Timeline Layout) -->
+<section class="bg-surface-lavender-deep rounded-xl p-md md:p-lg shadow-[0px_10px_32px_rgba(15,23,42,0.08)] mb-xl relative overflow-hidden">
+<!-- Subtle decorative background pattern -->
+<div class="absolute top-0 right-0 w-64 h-64 bg-action-purple-primary opacity-5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
+<div class="flex items-center justify-between mb-lg relative z-10 border-b border-surface-lavender-light pb-sm">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-action-purple-primary" style="font-variation-settings: 'FILL' 1;">timer</span>
+<h2 class="font-title-md text-title-md text-action-purple-primary">المدة المقترحة: 12 أسبوعًا</h2>
+</div>
+<span class="bg-surface-lavender-light text-action-purple-dark px-3 py-1 rounded-full font-label-sm text-label-sm">خطة مخصصة</span>
+</div>
+<!-- Phases Timeline -->
+<div class="relative z-10 pr-2">
+<div class="timeline-line hidden sm:block"></div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-sm relative">
+<!-- Phase 1 -->
+<div class="glass-card rounded-lg p-sm flex items-center gap-sm shadow-sm relative z-10 hover:shadow-md transition-shadow">
+<div class="w-8 h-8 rounded-full bg-action-purple-primary flex items-center justify-center shrink-0">
+<span class="font-label-md text-label-md text-white">1</span>
+</div>
+<span class="font-body-md text-body-md text-on-surface font-medium">أساسيات Python</span>
+</div>
+<!-- Phase 2 -->
+<div class="glass-card rounded-lg p-sm flex items-center gap-sm shadow-sm relative z-10 hover:shadow-md transition-shadow sm:mt-6">
+<div class="w-8 h-8 rounded-full bg-surface-lavender-light flex items-center justify-center shrink-0">
+<span class="font-label-md text-label-md text-action-purple-dark">2</span>
+</div>
+<span class="font-body-md text-body-md text-on-surface font-medium">الشروط والحلقات</span>
+</div>
+<!-- Phase 3 -->
+<div class="glass-card rounded-lg p-sm flex items-center gap-sm shadow-sm relative z-10 hover:shadow-md transition-shadow">
+<div class="w-8 h-8 rounded-full bg-surface-lavender-light flex items-center justify-center shrink-0">
+<span class="font-label-md text-label-md text-action-purple-dark">3</span>
+</div>
+<span class="font-body-md text-body-md text-on-surface font-medium">الدوال</span>
+</div>
+<!-- Phase 4 -->
+<div class="glass-card rounded-lg p-sm flex items-center gap-sm shadow-sm relative z-10 hover:shadow-md transition-shadow sm:mt-6">
+<div class="w-8 h-8 rounded-full bg-surface-lavender-light flex items-center justify-center shrink-0">
+<span class="font-label-md text-label-md text-action-purple-dark">4</span>
+</div>
+<span class="font-body-md text-body-md text-on-surface font-medium">OOP</span>
+</div>
+<!-- Phase 5 -->
+<div class="glass-card rounded-lg p-sm flex items-center gap-sm shadow-sm relative z-10 hover:shadow-md transition-shadow">
+<div class="w-8 h-8 rounded-full bg-surface-lavender-light flex items-center justify-center shrink-0">
+<span class="font-label-md text-label-md text-action-purple-dark">5</span>
+</div>
+<span class="font-body-md text-body-md text-on-surface font-medium">مشروع صغير</span>
+</div>
+<!-- Phase 6 -->
+<div class="glass-card rounded-lg p-sm flex items-center gap-sm shadow-sm relative z-10 hover:shadow-md transition-shadow sm:mt-6 border-action-purple-primary/30 bg-action-purple-primary/5">
+<div class="w-8 h-8 rounded-full bg-surface-lavender-light flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-action-purple-dark text-sm">emoji_events</span>
+</div>
+<span class="font-body-md text-body-md text-action-purple-primary font-bold">مشروع نهائي</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Action Buttons (Fixed Bottom for Mobile, Inline for Desktop) -->
+<section class="fixed bottom-0 left-0 right-0 p-margin-mobile backdrop-blur-md border-t border-surface-lavender-deep shadow-[0px_-10px_32px_rgba(15,23,42,0.05)] md:relative md:bg-transparent md:border-none md:shadow-none md:p-0 z-40 bg-surface-container-lowest">
+<div class="max-w-container-max mx-auto flex flex-col md:flex-row-reverse gap-sm md:justify-start">
+<button class="w-full md:w-auto px-lg py-3 bg-action-purple-primary text-white rounded-lg font-label-md text-label-md font-bold hover:bg-action-purple-dark transition-colors active:scale-95 flex items-center justify-center gap-2 shadow-md">
+<span class="material-symbols-outlined text-sm">check_circle</span>
+                    اعتماد الخطة
+                </button>
+<button class="w-full md:w-auto px-lg py-3 bg-transparent border border-action-purple-primary text-action-purple-primary rounded-lg font-label-md text-label-md font-bold hover:bg-action-purple-primary/10 transition-colors active:scale-95 flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm">edit</span>
+                    تعديل الخطة
+                </button>
+<button class="w-full md:w-auto px-lg py-3 bg-surface-lavender-deep text-action-purple-dark rounded-lg font-label-md text-label-md font-bold hover:bg-surface-lavender-light transition-colors active:scale-95 flex items-center justify-center gap-2 mt-xs md:mt-0 md:mr-auto" style="background-color: rgb(226, 201, 157);">
+<span class="material-symbols-outlined text-sm">refresh</span>
+                    إعادة إنشاء الخطة
+                </button>
+</div>
+</section>
+</main>
+
+
+
+
+</body></html>

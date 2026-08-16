@@ -1,0 +1,386 @@
+<!DOCTYPE html><html dir="rtl" lang="ar"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>GoalPath - Reports</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+                "secondary-fixed-dim": "#deb7ff",
+                "outline": "#7d7480",
+                "surface-lavender-deep": "#CCADD9",
+                "surface-container-highest": "#f1dbf8",
+                "tertiary-container": "#006058",
+                "tertiary-fixed-dim": "#6bd8cb",
+                "on-surface-variant": "#4c444f",
+                "surface-container": "#fae8ff",
+                "action-purple-dark": "#532D75",
+                "background": "#fff7fc",
+                "surface-variant": "#f1dbf8",
+                "surface": "#fff7fc",
+                "action-purple-primary": "#6D428F",
+                "tertiary-fixed": "#89f5e7",
+                "on-error-container": "#93000a",
+                "on-background": "#23162b",
+                "on-secondary-container": "#613b84",
+                "error": "#ba1a1a",
+                "on-tertiary-fixed": "#00201d",
+                "on-tertiary-container": "#6fdcce",
+                "secondary-container": "#d9acfe",
+                "on-tertiary": "#ffffff",
+                "tertiary": "#004640",
+                "on-tertiary-fixed-variant": "#005049",
+                "secondary-fixed": "#f1dbff",
+                "outline-variant": "#cec3d1",
+                "on-secondary": "#ffffff",
+                "inverse-primary": "#e1b6ff",
+                "on-secondary-fixed": "#2d014f",
+                "inverse-on-surface": "#fcecff",
+                "surface-bright": "#fff7fc",
+                "on-primary-fixed": "#2e004e",
+                "on-primary-container": "#e3bbff",
+                "surface-tint": "#774b99",
+                "on-secondary-fixed-variant": "#5b357d",
+                "inverse-surface": "#392b41",
+                "primary": "#542a76",
+                "primary-fixed-dim": "#e1b6ff",
+                "surface-container-low": "#fdefff",
+                "accent-amber": "#F59E0B",
+                "on-surface": "#23162b",
+                "primary-fixed": "#f2daff",
+                "secondary": "#744d97",
+                "surface-container-lowest": "#ffffff",
+                "progress-teal": "#0D9488",
+                "primary-container": "#6d428f",
+                "surface-lavender-light": "#E1CCE8",
+                "on-primary-fixed-variant": "#5d337f",
+                "on-error": "#ffffff",
+                "error-container": "#ffdad6",
+                "surface-container-high": "#f7e1fe",
+                "on-primary": "#ffffff",
+                "surface-dim": "#e8d3ef"
+        },
+        "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+        },
+        "spacing": {
+                "container-max": "1280px",
+                "xs": "4px",
+                "sm": "12px",
+                "base": "8px",
+                "lg": "32px",
+                "gutter": "24px",
+                "md": "20px",
+                "margin-mobile": "16px",
+                "xl": "48px"
+        },
+        "fontFamily": {
+                "title-md": [
+                        "IBM Plex Sans Arabic"
+                ],
+                "body-md": [
+                        "IBM Plex Sans Arabic"
+                ],
+                "headline-lg-mobile": [
+                        "IBM Plex Sans Arabic"
+                ],
+                "label-md": [
+                        "IBM Plex Sans Arabic"
+                ],
+                "label-sm": [
+                        "IBM Plex Sans Arabic"
+                ],
+                "headline-lg": [
+                        "IBM Plex Sans Arabic"
+                ],
+                "body-lg": [
+                        "IBM Plex Sans Arabic"
+                ],
+                "display-lg": [
+                        "IBM Plex Sans Arabic"
+                ]
+        },
+        "fontSize": {
+                "title-md": [
+                        "20px",
+                        {
+                                "lineHeight": "28px",
+                                "fontWeight": "600"
+                        }
+                ],
+                "body-md": [
+                        "16px",
+                        {
+                                "lineHeight": "24px",
+                                "fontWeight": "400"
+                        }
+                ],
+                "headline-lg-mobile": [
+                        "24px",
+                        {
+                                "lineHeight": "32px",
+                                "fontWeight": "600"
+                        }
+                ],
+                "label-md": [
+                        "14px",
+                        {
+                                "lineHeight": "20px",
+                                "letterSpacing": "0.02em",
+                                "fontWeight": "500"
+                        }
+                ],
+                "label-sm": [
+                        "12px",
+                        {
+                                "lineHeight": "16px",
+                                "letterSpacing": "0.04em",
+                                "fontWeight": "500"
+                        }
+                ],
+                "headline-lg": [
+                        "32px",
+                        {
+                                "lineHeight": "40px",
+                                "fontWeight": "600"
+                        }
+                ],
+                "body-lg": [
+                        "18px",
+                        {
+                                "lineHeight": "28px",
+                                "fontWeight": "400"
+                        }
+                ],
+                "display-lg": [
+                        "40px",
+                        {
+                                "lineHeight": "52px",
+                                "fontWeight": "700"
+                        }
+                ]
+        }
+},
+    },
+  }
+</script>
+<style>
+        body { font-family: 'IBM Plex Sans Arabic', sans-serif; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="text-on-background min-h-screen pb-24 md:pb-0 pt-16 md:pt-0 bg-surface-container-lowest">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 dark:bg-surface-dim flex items-center justify-between px-margin-mobile h-16 md:hidden bg-surface-container-lowest">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-action-purple-primary dark:text-primary-fixed-dim" data-icon="target">target</span>
+<span class="font-display-lg text-display-lg font-bold text-action-purple-primary dark:text-primary-fixed">GoalPath</span>
+</div>
+<button class="text-on-surface-variant hover:bg-surface-lavender-deep hover:text-action-purple-dark transition-colors active:scale-95 transition-transform p-2 rounded-full">
+<span class="material-symbols-outlined text-action-purple-primary dark:text-primary-fixed-dim" data-icon="notifications">notifications</span>
+</button>
+</header>
+<div class="max-w-container-max mx-auto flex">
+<!-- SideNav (Desktop) -->
+<nav class="hidden md:flex flex-col w-72 bg-surface-container-lowest h-screen sticky top-0 border-l border-surface-lavender-deep p-4 gap-4 shrink-0">
+<div class="flex items-center gap-2 px-4 py-6 mb-4">
+<span class="material-symbols-outlined text-action-purple-primary text-3xl">target</span>
+<span class="font-display-lg text-2xl font-bold text-action-purple-primary">GoalPath</span>
+</div>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-lavender-deep hover:text-action-purple-dark transition-colors" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-md text-label-md">Home</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-lavender-deep hover:text-action-purple-dark transition-colors" href="#">
+<span class="material-symbols-outlined">checklist</span>
+<span class="font-label-md text-label-md">Goals</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-lavender-deep hover:text-action-purple-dark transition-colors" href="#">
+<span class="material-symbols-outlined">add_circle</span>
+<span class="font-label-md text-label-md">Add</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg bg-action-purple-primary text-white hover:bg-action-purple-dark transition-colors font-bold" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-label-md text-label-md">Reports</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-lavender-deep hover:text-action-purple-dark transition-colors" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-md text-label-md">Profile</span>
+</a>
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-1 px-margin-mobile md:px-lg py-6 space-y-lg">
+<header>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-action-purple-primary mb-2">تقرير الإنجاز</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">نظرة تحليلية لأدائك هذا الأسبوع</p>
+</header>
+<!-- Summary Card -->
+<section class="bg-surface-container-lowest rounded-xl p-6 shadow-lg border border-surface-lavender-deep flex flex-col md:flex-row items-center justify-between gap-6 relative overflow-hidden">
+<div class="absolute -right-12 -top-12 opacity-10 text-action-purple-primary">
+<span class="material-symbols-outlined" style="font-size: 150px;">analytics</span>
+</div>
+<div class="z-10 text-center md:text-right w-full md:w-auto">
+<h2 class="font-title-md text-title-md text-action-purple-primary mb-1">إنجاز هذا الأسبوع</h2>
+<p class="font-display-lg text-display-lg text-action-purple-primary font-bold">78%</p>
+</div>
+<div class="w-full md:w-1/2 z-10 flex flex-col gap-2">
+<div class="flex justify-between font-label-md text-label-md text-on-surface-variant">
+<span class="">التقدم نحو الهدف الأسبوعي</span>
+<span class="">78%</span>
+</div>
+<div class="h-2 w-full bg-surface-lavender-deep rounded-full overflow-hidden">
+<div class="h-full bg-action-purple-primary rounded-full" style="width: 78%;"></div>
+</div>
+</div>
+</section>
+<!-- Stats Grid -->
+<section class="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
+<!-- Stat Item 1 -->
+<div class="bg-surface-container-lowest p-4 rounded-lg shadow-sm border border-surface-lavender-deep flex flex-col items-start gap-2 hover:bg-surface-lavender-deep transition-colors">
+<div class="p-2 bg-surface-variant rounded-md text-outline">
+<span class="material-symbols-outlined text-xl">task_alt</span>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant">المهام المكتملة</p>
+<p class="font-title-md text-title-md text-action-purple-primary font-bold">24</p>
+</div>
+</div>
+<!-- Stat Item 2 -->
+<div class="bg-surface-container-lowest p-4 rounded-lg shadow-sm border border-surface-lavender-deep flex flex-col items-start gap-2 hover:bg-surface-lavender-deep transition-colors">
+<div class="p-2 bg-error-container rounded-md text-error">
+<span class="material-symbols-outlined text-xl">pending_actions</span>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant">المهام المتأخرة</p>
+<p class="font-title-md text-title-md text-action-purple-primary font-bold">3</p>
+</div>
+</div>
+<!-- Stat Item 3 -->
+<div class="bg-surface-container-lowest p-4 rounded-lg shadow-sm border border-surface-lavender-deep flex flex-col items-start gap-2 hover:bg-surface-lavender-deep transition-colors">
+<div class="p-2 bg-tertiary-fixed rounded-md text-tertiary-container">
+<span class="material-symbols-outlined text-xl">schedule</span>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant">ساعات العمل</p>
+<p class="font-title-md text-title-md text-action-purple-primary font-bold">32.5</p>
+</div>
+</div>
+<!-- Stat Item 4 -->
+<div class="bg-surface-container-lowest p-4 rounded-lg shadow-sm border border-surface-lavender-deep flex flex-col items-start gap-2 hover:bg-surface-lavender-deep transition-colors">
+<div class="p-2 bg-surface-container-low rounded-md text-accent-amber">
+<span class="material-symbols-outlined text-xl">emoji_events</span>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant">الأهداف المكتملة</p>
+<p class="font-title-md text-title-md text-action-purple-primary font-bold">2</p>
+</div>
+</div>
+<!-- Stat Item 5 -->
+<div class="bg-surface-container-lowest p-4 rounded-lg shadow-sm border border-surface-lavender-deep flex flex-col items-start gap-2 hover:bg-surface-lavender-deep transition-colors col-span-2 md:col-span-1">
+<div class="p-2 bg-surface-variant rounded-md text-outline">
+<span class="material-symbols-outlined text-xl">trending_up</span>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant">مستوى الالتزام</p>
+<p class="font-title-md text-title-md text-action-purple-primary font-bold">عالي (85%)</p>
+</div>
+</div>
+</section>
+<!-- Chart Section (Simplified visual representation) -->
+<section class="bg-surface-container-lowest rounded-xl p-6 shadow-sm border border-surface-lavender-deep">
+<div class="flex justify-between items-center mb-6">
+<h3 class="font-title-md text-title-md text-action-purple-primary">اتجاهات التقدم الأسبوعية</h3>
+<button class="text-action-purple-primary font-label-md flex items-center gap-1 hover:underline hover:text-action-purple-dark">
+                        تفاصيل <span class="material-symbols-outlined text-sm">arrow_back</span>
+</button>
+</div>
+<!-- Faux Bar Chart -->
+<div class="h-48 flex items-end justify-between gap-2 md:gap-4 relative px-2">
+<!-- Y Axis Labels -->
+<div class="absolute right-0 top-0 h-full flex flex-col justify-between text-xs text-outline-variant py-2">
+<span class="">100%</span>
+<span class="">50%</span>
+<span class="">0%</span>
+</div>
+<!-- Horizontal Lines -->
+<div class="absolute inset-0 flex flex-col justify-between py-4 pr-8 -z-10">
+<div class="w-full border-b border-surface-lavender-deep border-dashed"></div>
+<div class="w-full border-b border-surface-lavender-deep border-dashed"></div>
+<div class="w-full border-b border-surface-lavender-deep border-solid"></div>
+</div>
+<!-- Bars -->
+<div class="w-1/6 bg-surface-lavender-deep h-[40%] rounded-t-sm flex flex-col justify-end items-center group relative cursor-pointer hover:opacity-80 transition-opacity pr-8">
+<div class="w-full bg-action-purple-primary h-[80%] rounded-t-sm"></div>
+<span class="absolute -bottom-6 text-xs text-on-surface-variant">السبت</span>
+</div>
+<div class="w-1/6 bg-surface-lavender-deep h-[60%] rounded-t-sm flex flex-col justify-end items-center group relative cursor-pointer hover:opacity-80 transition-opacity">
+<div class="w-full bg-action-purple-primary h-[50%] rounded-t-sm"></div>
+<span class="absolute -bottom-6 text-xs text-on-surface-variant">الأحد</span>
+</div>
+<div class="w-1/6 bg-surface-lavender-deep h-[85%] rounded-t-sm flex flex-col justify-end items-center group relative cursor-pointer hover:opacity-80 transition-opacity">
+<div class="w-full bg-action-purple-primary h-[70%] rounded-t-sm"></div>
+<span class="absolute -bottom-6 text-xs text-on-surface-variant">الإثنين</span>
+</div>
+<div class="w-1/6 bg-surface-lavender-deep h-[50%] rounded-t-sm flex flex-col justify-end items-center group relative cursor-pointer hover:opacity-80 transition-opacity">
+<div class="w-full bg-action-purple-primary h-[90%] rounded-t-sm"></div>
+<span class="absolute -bottom-6 text-xs text-on-surface-variant">الثلاثاء</span>
+</div>
+<div class="w-1/6 bg-surface-lavender-deep h-[95%] rounded-t-sm flex flex-col justify-end items-center group relative cursor-pointer hover:opacity-80 transition-opacity">
+<div class="w-full bg-action-purple-primary h-[85%] rounded-t-sm"></div>
+<span class="absolute -bottom-6 text-xs text-on-surface-variant font-bold text-action-purple-primary">الأربعاء</span>
+</div>
+<div class="w-1/6 bg-surface-lavender-deep h-[30%] rounded-t-sm flex flex-col justify-end items-center group relative cursor-pointer hover:opacity-80 transition-opacity">
+<div class="w-full bg-error-container h-[40%] rounded-t-sm"></div>
+<span class="absolute -bottom-6 text-xs text-on-surface-variant">الخميس</span>
+</div>
+</div>
+<div class="mt-8 text-center text-label-sm text-on-surface-variant flex items-center justify-center gap-4">
+<div class="flex items-center gap-1"><span class="w-3 h-3 rounded-full bg-action-purple-primary"></span> منجز</div>
+<div class="flex items-center gap-1"><span class="w-3 h-3 rounded-full bg-surface-lavender-deep"></span> قيد التنفيذ</div>
+</div>
+</section>
+</main>
+</div>
+<!-- BottomNavBar (Mobile) -->
+<nav class="fixed bottom-0 w-full z-50 rounded-t-xl bg-surface-container-lowest dark:bg-primary-container shadow-[0px_-4px_20px_rgba(15,23,42,0.05)] shadow-lg flex justify-around items-center h-20 px-2 pb-safe md:hidden">
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant hover:bg-surface-lavender-deep hover:text-action-purple-dark transition-all active:scale-90 transition-transform w-full h-full" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-sm text-label-sm mt-1">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant hover:bg-surface-lavender-deep hover:text-action-purple-dark transition-all active:scale-90 transition-transform w-full h-full" href="#">
+<span class="material-symbols-outlined">checklist</span>
+<span class="font-label-sm text-label-sm mt-1">Goals</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant hover:bg-surface-lavender-deep hover:text-action-purple-dark transition-all active:scale-90 transition-transform w-full h-full" href="#">
+<span class="material-symbols-outlined">add_circle</span>
+<span class="font-label-sm text-label-sm mt-1">Add</span>
+</a>
+<a class="flex flex-col items-center justify-center text-action-purple-primary dark:text-secondary-fixed font-bold border-t-2 border-action-purple-primary w-full h-full" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-label-sm text-label-sm mt-1">Reports</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant hover:bg-surface-lavender-deep hover:text-action-purple-dark transition-all active:scale-90 transition-transform w-full h-full" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-sm text-label-sm mt-1">Profile</span>
+</a>
+</nav>
+
+
+
+
+
+
+</body></html>

@@ -1,0 +1,306 @@
+<!DOCTYPE html><html dir="rtl" lang="ar"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>تفاصيل الهدف - GoalPath</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-fixed-dim": "#deb7ff",
+                        "outline": "#7d7480",
+                        "surface-lavender-deep": "#CCADD9",
+                        "surface-container-highest": "#f1dbf8",
+                        "tertiary-container": "#006058",
+                        "tertiary-fixed-dim": "#6bd8cb",
+                        "on-surface-variant": "#4c444f",
+                        "surface-container": "#fae8ff",
+                        "action-purple-dark": "#532D75",
+                        "background": "#fff7fc",
+                        "surface-variant": "#f1dbf8",
+                        "surface": "#fff7fc",
+                        "action-purple-primary": "#6D428F",
+                        "tertiary-fixed": "#89f5e7",
+                        "on-error-container": "#93000a",
+                        "on-background": "#23162b",
+                        "on-secondary-container": "#613b84",
+                        "error": "#ba1a1a",
+                        "on-tertiary-fixed": "#00201d",
+                        "on-tertiary-container": "#6fdcce",
+                        "secondary-container": "#d9acfe",
+                        "on-tertiary": "#ffffff",
+                        "tertiary": "#004640",
+                        "on-tertiary-fixed-variant": "#005049",
+                        "secondary-fixed": "#f1dbff",
+                        "outline-variant": "#cec3d1",
+                        "on-secondary": "#ffffff",
+                        "inverse-primary": "#e1b6ff",
+                        "on-secondary-fixed": "#2d014f",
+                        "inverse-on-surface": "#fcecff",
+                        "surface-bright": "#fff7fc",
+                        "on-primary-fixed": "#2e004e",
+                        "on-primary-container": "#e3bbff",
+                        "surface-tint": "#774b99",
+                        "on-secondary-fixed-variant": "#5b357d",
+                        "inverse-surface": "#392b41",
+                        "primary": "#542a76",
+                        "primary-fixed-dim": "#e1b6ff",
+                        "surface-container-low": "#fdefff",
+                        "accent-amber": "#F59E0B",
+                        "on-surface": "#23162b",
+                        "primary-fixed": "#f2daff",
+                        "secondary": "#744d97",
+                        "surface-container-lowest": "#ffffff",
+                        "progress-teal": "#0D9488",
+                        "primary-container": "#6d428f",
+                        "surface-lavender-light": "#E1CCE8",
+                        "on-primary-fixed-variant": "#5d337f",
+                        "on-error": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "surface-container-high": "#f7e1fe",
+                        "on-primary": "#ffffff",
+                        "surface-dim": "#e8d3ef"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-max": "1280px",
+                        "xl": "48px",
+                        "lg": "32px",
+                        "margin-mobile": "16px",
+                        "base": "8px",
+                        "xs": "4px",
+                        "md": "20px",
+                        "sm": "12px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["IBM Plex Sans Arabic"],
+                        "label-sm": ["IBM Plex Sans Arabic"],
+                        "label-md": ["IBM Plex Sans Arabic"],
+                        "headline-lg": ["IBM Plex Sans Arabic"],
+                        "body-lg": ["IBM Plex Sans Arabic"],
+                        "headline-lg-mobile": ["IBM Plex Sans Arabic"],
+                        "title-md": ["IBM Plex Sans Arabic"],
+                        "body-md": ["IBM Plex Sans Arabic"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["40px", { "lineHeight": "52px", "letterSpacing": "0px", "fontWeight": "700" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.04em", "fontWeight": "500" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "500" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "0px", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "letterSpacing": "0px", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "letterSpacing": "0px", "fontWeight": "600" }],
+                        "title-md": ["20px", { "lineHeight": "28px", "letterSpacing": "0px", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "letterSpacing": "0px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'IBM Plex Sans Arabic', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .icon-fill { font-variation-settings: 'FILL' 1; }
+        
+        /* Custom scrollbar for timeline if it gets too long on desktop */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #e0e3e5; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #c5c6cd; }
+        
+        @keyframes pulse-ring {
+            0% { transform: scale(0.8); opacity: 0.5; }
+            100% { transform: scale(1.3); opacity: 0; }
+        }
+        .ai-pulse::before {
+            content: '';
+            position: absolute;
+            left: 0; top: 0; right: 0; bottom: 0;
+            border-radius: 50%;
+            background-color: #CCADD9;
+            animation: pulse-ring 2s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+            z-index: -1;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="text-on-background min-h-screen flex flex-col items-center bg-surface-container-lowest">
+<!-- Detail Screen Context: Global Navigation is suppressed -->
+<div class="w-full max-w-[container-max] flex-grow flex flex-col md:flex-row relative">
+<!-- Main Content Area -->
+<main class="w-full flex-grow px-margin-mobile md:px-lg py-6 relative">
+<!-- Custom Top Bar for Detail Screen -->
+<header class="flex items-center justify-between mb-8 pb-4 border-b border-surface-container-high sticky top-0 z-20 bg-surface-container-lowest">
+<div class="flex items-center gap-4">
+<button aria-label="العودة" class="p-2 rounded-full hover:bg-surface-lavender-deep transition-colors text-on-surface">
+<span class="material-symbols-outlined">arrow_forward</span>
+</button>
+<h1 class="font-title-md text-on-surface hidden md:block">تفاصيل الهدف</h1>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-2 rounded-full hover:bg-surface-lavender-deep transition-colors text-on-surface-variant">
+<span class="material-symbols-outlined">edit</span>
+</button>
+<button class="p-2 rounded-full hover:bg-surface-lavender-deep transition-colors text-on-surface-variant">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+</header>
+<div class="max-w-3xl mx-auto space-y-6">
+<!-- Overview Card -->
+<section class="bg-surface-container-lowest rounded-[24px] p-6 md:p-8 shadow-[0px_4px_20px_rgba(15,23,42,0.05)] border border-surface-container-low flex flex-col md:flex-row items-center gap-8 md:gap-12 relative overflow-hidden">
+<!-- Decorative subtle background element -->
+<div class="absolute -top-24 -left-24 w-48 h-48 bg-surface-lavender-deep opacity-30 rounded-full blur-3xl pointer-events-none"></div>
+<!-- Progress Indicator -->
+<div class="relative w-32 h-32 flex-shrink-0">
+<svg class="w-full h-full transform -rotate-90" viewBox="0 0 100 100">
+<!-- Background Track -->
+<circle class="text-surface-container-highest" cx="50" cy="50" fill="transparent" r="42" stroke="currentColor" stroke-width="8"></circle>
+<!-- Progress Fill (40%) -->
+<circle class="text-action-purple-primary transition-all duration-1000 ease-out" cx="50" cy="50" fill="transparent" r="42" stroke="currentColor" stroke-dasharray="263.89" stroke-dashoffset="158.33" stroke-linecap="round" stroke-width="8"></circle>
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center">
+<span class="font-display-lg text-action-purple-primary">40</span>
+<span class="font-label-sm text-on-surface-variant">%</span>
+</div>
+</div>
+<!-- Goal Details -->
+<div class="flex-grow text-center md:text-right w-full">
+<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-lavender-deep/30 text-action-purple-primary mb-3">
+<span class="material-symbols-outlined text-[14px]">school</span>
+<span class="font-label-sm">تطوير الذات</span>
+</div>
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-on-surface mb-2">تعلم Python خلال 3 أشهر</h2>
+<p class="font-body-md text-on-surface-variant mb-4 max-w-lg mx-auto md:mx-0">إتقان أساسيات لغة بايثون والقدرة على بناء تطبيقات بسيطة لتحليل البيانات.</p>
+<div class="flex items-center justify-center md:justify-start gap-6 pt-4 border-t border-surface-container-high">
+<div class="flex flex-col">
+<span class="font-label-sm text-outline">تاريخ البدء</span>
+<span class="font-label-md text-on-surface">١ أكتوبر ٢٠٢٣</span>
+</div>
+<div class="w-[1px] h-8 bg-surface-container-high"></div>
+<div class="flex flex-col">
+<span class="font-label-sm text-outline">تاريخ الانتهاء</span>
+<span class="font-label-md text-on-surface">٣١ ديسمبر ٢٠٢٣</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Timeline Section -->
+<section class="bg-surface-container-lowest rounded-[24px] p-6 md:p-8 shadow-[0px_4px_20px_rgba(15,23,42,0.05)] border border-surface-container-low">
+<div class="flex items-center justify-between mb-8">
+<h3 class="font-title-md text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-action-purple-primary">route</span>
+                            المسار الزمني
+                        </h3>
+<button class="font-label-md text-action-purple-primary hover:text-action-purple-dark transition-colors flex items-center gap-1">
+<span class="material-symbols-outlined text-[18px]">add</span>
+                            إضافة خطوة
+                        </button>
+</div>
+<div class="relative pl-2 md:pl-0">
+<!-- Main Timeline Line -->
+<div class="absolute right-[23px] top-[16px] bottom-[32px] w-[2px] bg-surface-container-high rounded-full hidden md:block"></div>
+<div class="absolute right-[15px] top-[16px] bottom-[32px] w-[2px] bg-surface-container-high rounded-full md:hidden"></div>
+<!-- Step 1: Completed -->
+<div class="flex items-start gap-4 md:gap-6 relative mb-8 group cursor-pointer">
+<div class="relative z-10 w-8 h-8 md:w-12 md:h-12 rounded-full bg-action-purple-primary text-white flex items-center justify-center shadow-sm flex-shrink-0 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined icon-fill text-[18px] md:text-[24px]">check_circle</span>
+</div>
+<div class="flex-grow pt-1 md:pt-2">
+<div class="flex justify-between items-start mb-1">
+<h4 class="font-label-md md:font-title-md text-on-surface line-through opacity-70">أساسيات Python</h4>
+<span class="font-label-sm text-action-purple-primary bg-surface-lavender-deep/50 px-2 py-0.5 rounded-full">مكتملة</span>
+</div>
+<p class="font-body-md text-outline text-sm md:text-base hidden md:block">المتغيرات، أنواع البيانات، والعمليات الحسابية الأساسية.</p>
+</div>
+</div>
+<!-- Step 2: In Progress -->
+<div class="flex items-start gap-4 md:gap-6 relative mb-8 group cursor-pointer">
+<div class="relative z-10 w-8 h-8 md:w-12 md:h-12 rounded-full bg-surface-container-lowest border-2 border-action-purple-primary text-action-purple-primary flex items-center justify-center flex-shrink-0">
+<div class="ai-pulse w-full h-full relative flex items-center justify-center rounded-full">
+<span class="material-symbols-outlined text-[18px] md:text-[24px]">pending</span>
+</div>
+</div>
+<div class="flex-grow pt-1 md:pt-2 bg-surface-lavender-deep p-4 rounded-xl border border-surface-container-high shadow-sm">
+<div class="flex justify-between items-start mb-2">
+<h4 class="font-title-md text-action-purple-primary font-bold">الشروط والحلقات</h4>
+<span class="font-label-sm text-action-purple-primary bg-surface-lavender-light px-2 py-0.5 rounded-full flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">timelapse</span>
+                                        قيد التنفيذ
+                                    </span>
+</div>
+<p class="font-body-md text-on-surface-variant text-sm md:text-base mb-3">فهم كيفية التحكم في تدفق البرنامج باستخدام if/else وحلقات for و while.</p>
+<button class="bg-action-purple-primary text-white font-label-md px-4 py-2 rounded-lg hover:bg-action-purple-dark transition-colors w-full md:w-auto">متابعة التعلم</button>
+</div>
+</div>
+<!-- Step 3: Not Started -->
+<div class="flex items-start gap-4 md:gap-6 relative mb-8 group cursor-pointer opacity-70 hover:opacity-100 transition-opacity">
+<div class="relative z-10 w-8 h-8 md:w-12 md:h-12 rounded-full bg-surface-container-highest border-2 border-outline-variant text-outline flex items-center justify-center flex-shrink-0 group-hover:border-action-purple-primary group-hover:text-action-purple-primary transition-colors">
+<span class="material-symbols-outlined text-[18px] md:text-[24px]">radio_button_unchecked</span>
+</div>
+<div class="flex-grow pt-1 md:pt-2">
+<div class="flex justify-between items-start mb-1">
+<h4 class="font-label-md md:font-title-md text-on-surface">الدوال</h4>
+<span class="font-label-sm text-outline">لم تبدأ</span>
+</div>
+<p class="font-body-md text-outline text-sm md:text-base hidden md:block">تعريف الدوال، تمرير المعاملات، وإرجاع القيم.</p>
+</div>
+</div>
+<!-- Step 4: Not Started -->
+<div class="flex items-start gap-4 md:gap-6 relative mb-8 group cursor-pointer opacity-70 hover:opacity-100 transition-opacity">
+<div class="relative z-10 w-8 h-8 md:w-12 md:h-12 rounded-full bg-surface-container-highest border-2 border-outline-variant text-outline flex items-center justify-center flex-shrink-0 group-hover:border-action-purple-primary group-hover:text-action-purple-primary transition-colors">
+<span class="material-symbols-outlined text-[18px] md:text-[24px]">radio_button_unchecked</span>
+</div>
+<div class="flex-grow pt-1 md:pt-2">
+<div class="flex justify-between items-start mb-1">
+<h4 class="font-label-md md:font-title-md text-on-surface">البرمجة الكائنية OOP</h4>
+<span class="font-label-sm text-outline">لم تبدأ</span>
+</div>
+</div>
+</div>
+<!-- Step 5: Not Started -->
+<div class="flex items-start gap-4 md:gap-6 relative mb-8 group cursor-pointer opacity-70 hover:opacity-100 transition-opacity">
+<div class="relative z-10 w-8 h-8 md:w-12 md:h-12 rounded-full bg-surface-container-highest border-2 border-outline-variant text-outline flex items-center justify-center flex-shrink-0 group-hover:border-action-purple-primary group-hover:text-action-purple-primary transition-colors">
+<span class="material-symbols-outlined text-[18px] md:text-[24px]">radio_button_unchecked</span>
+</div>
+<div class="flex-grow pt-1 md:pt-2">
+<div class="flex justify-between items-start mb-1">
+<h4 class="font-label-md md:font-title-md text-on-surface">مشروع صغير</h4>
+<span class="font-label-sm text-outline">لم تبدأ</span>
+</div>
+</div>
+</div>
+<!-- Step 6: Not Started -->
+<div class="flex items-start gap-4 md:gap-6 relative group cursor-pointer opacity-70 hover:opacity-100 transition-opacity">
+<div class="relative z-10 w-8 h-8 md:w-12 md:h-12 rounded-full bg-surface-container-highest border-2 border-outline-variant text-outline flex items-center justify-center flex-shrink-0 group-hover:border-action-purple-primary group-hover:text-action-purple-primary transition-colors">
+<span class="material-symbols-outlined text-[18px] md:text-[24px]">flag</span>
+</div>
+<div class="flex-grow pt-1 md:pt-2">
+<div class="flex justify-between items-start mb-1">
+<h4 class="font-label-md md:font-title-md text-on-surface">مشروع نهائي</h4>
+<span class="font-label-sm text-outline">الهدف النهائي</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+</div>
+
+
+</body></html>

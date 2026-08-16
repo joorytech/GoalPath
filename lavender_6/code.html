@@ -1,0 +1,360 @@
+<!DOCTYPE html><html dir="rtl" lang="ar"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>GoalPath - Delay Recovery</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+                "secondary-fixed-dim": "#deb7ff",
+                "outline": "#7d7480",
+                "surface-lavender-deep": "#CCADD9",
+                "surface-container-highest": "#f1dbf8",
+                "tertiary-container": "#006058",
+                "tertiary-fixed-dim": "#6bd8cb",
+                "on-surface-variant": "#4c444f",
+                "surface-container": "#fae8ff",
+                "action-purple-dark": "#532D75",
+                "background": "#fff7fc",
+                "surface-variant": "#f1dbf8",
+                "surface": "#fff7fc",
+                "action-purple-primary": "#6D428F",
+                "tertiary-fixed": "#89f5e7",
+                "on-error-container": "#93000a",
+                "on-background": "#23162b",
+                "on-secondary-container": "#613b84",
+                "error": "#ba1a1a",
+                "on-tertiary-fixed": "#00201d",
+                "on-tertiary-container": "#6fdcce",
+                "secondary-container": "#d9acfe",
+                "on-tertiary": "#ffffff",
+                "tertiary": "#004640",
+                "on-tertiary-fixed-variant": "#005049",
+                "secondary-fixed": "#f1dbff",
+                "outline-variant": "#cec3d1",
+                "on-secondary": "#ffffff",
+                "inverse-primary": "#e1b6ff",
+                "on-secondary-fixed": "#2d014f",
+                "inverse-on-surface": "#fcecff",
+                "surface-bright": "#fff7fc",
+                "on-primary-fixed": "#2e004e",
+                "on-primary-container": "#e3bbff",
+                "surface-tint": "#774b99",
+                "on-secondary-fixed-variant": "#5b357d",
+                "inverse-surface": "#392b41",
+                "primary": "#542a76",
+                "primary-fixed-dim": "#e1b6ff",
+                "surface-container-low": "#fdefff",
+                "accent-amber": "#F59E0B",
+                "on-surface": "#23162b",
+                "primary-fixed": "#f2daff",
+                "secondary": "#744d97",
+                "surface-container-lowest": "#ffffff",
+                "progress-teal": "#0D9488",
+                "primary-container": "#6d428f",
+                "surface-lavender-light": "#E1CCE8",
+                "on-primary-fixed-variant": "#5d337f",
+                "on-error": "#ffffff",
+                "error-container": "#ffdad6",
+                "surface-container-high": "#f7e1fe",
+                "on-primary": "#ffffff",
+                "surface-dim": "#e8d3ef"
+        },
+        "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+        },
+        "spacing": {
+                "container-max": "1280px",
+                "xs": "4px",
+                "sm": "12px",
+                "base": "8px",
+                "lg": "32px",
+                "gutter": "24px",
+                "md": "20px",
+                "margin-mobile": "16px",
+                "xl": "48px"
+        },
+        "fontFamily": {
+                "title-md": [
+                        "IBM Plex Sans Arabic"
+                ],
+                "body-md": [
+                        "IBM Plex Sans Arabic"
+                ],
+                "headline-lg-mobile": [
+                        "IBM Plex Sans Arabic"
+                ],
+                "label-md": [
+                        "IBM Plex Sans Arabic"
+                ],
+                "label-sm": [
+                        "IBM Plex Sans Arabic"
+                ],
+                "headline-lg": [
+                        "IBM Plex Sans Arabic"
+                ],
+                "body-lg": [
+                        "IBM Plex Sans Arabic"
+                ],
+                "display-lg": [
+                        "IBM Plex Sans Arabic"
+                ]
+        },
+        "fontSize": {
+                "title-md": [
+                        "20px",
+                        {
+                                "lineHeight": "28px",
+                                "fontWeight": "600"
+                        }
+                ],
+                "body-md": [
+                        "16px",
+                        {
+                                "lineHeight": "24px",
+                                "fontWeight": "400"
+                        }
+                ],
+                "headline-lg-mobile": [
+                        "24px",
+                        {
+                                "lineHeight": "32px",
+                                "fontWeight": "600"
+                        }
+                ],
+                "label-md": [
+                        "14px",
+                        {
+                                "lineHeight": "20px",
+                                "letterSpacing": "0.02em",
+                                "fontWeight": "500"
+                        }
+                ],
+                "label-sm": [
+                        "12px",
+                        {
+                                "lineHeight": "16px",
+                                "letterSpacing": "0.04em",
+                                "fontWeight": "500"
+                        }
+                ],
+                "headline-lg": [
+                        "32px",
+                        {
+                                "lineHeight": "40px",
+                                "fontWeight": "600"
+                        }
+                ],
+                "body-lg": [
+                        "18px",
+                        {
+                                "lineHeight": "28px",
+                                "fontWeight": "400"
+                        }
+                ],
+                "display-lg": [
+                        "40px",
+                        {
+                                "lineHeight": "52px",
+                                "fontWeight": "700"
+                        }
+                ]
+        }
+},
+    },
+  }
+</script>
+<style>
+        .ai-pulse {
+            animation: pulse-glow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        @keyframes pulse-glow {
+            0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(109, 66, 143, 0.4); }
+            50% { opacity: .7; box-shadow: 0 0 0 10px rgba(109, 66, 143, 0); }
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="text-on-surface font-body-md min-h-screen pb-24 md:pb-0 bg-surface-container-lowest">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 dark:bg-surface-dim flat no shadows flex items-center justify-between px-margin-mobile h-16 md:hidden bg-surface-container-lowest">
+<div class="flex items-center gap-2 text-on-surface-variant dark:text-outline active:scale-95 transition-transform cursor-pointer">
+<span class="material-symbols-outlined" style="font-variation-settings: &quot;FILL&quot; 1;">target</span>
+</div>
+<div class="font-display-lg text-display-lg font-bold text-action-purple-primary dark:text-primary-fixed">GoalPath</div>
+<div class="flex items-center gap-2 text-on-surface-variant dark:text-outline active:scale-95 transition-transform cursor-pointer">
+<span class="material-symbols-outlined" style="font-variation-settings: &quot;FILL&quot; 1;">notifications</span>
+</div>
+</header>
+<!-- Main Layout Grid -->
+<div class="max-w-container-max mx-auto md:grid md:grid-cols-12 md:gap-gutter min-h-screen pt-20 md:pt-0">
+<!-- Desktop Sidebar (Hidden on Mobile) -->
+<aside class="hidden md:flex md:col-span-3 lg:col-span-2 flex-col bg-surface-lavender-deep h-screen sticky top-0 border-l border-surface-variant py-8 px-4 shadow-[0px_4px_20px_rgba(15,23,42,0.05)]">
+<div class="font-display-lg text-display-lg font-bold text-action-purple-primary mb-12 text-center">GoalPath</div>
+<nav class="flex flex-col gap-2">
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-md text-label-md">Home</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors" href="#">
+<span class="material-symbols-outlined">checklist</span>
+<span class="font-label-md text-label-md">Goals</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors" href="#">
+<span class="material-symbols-outlined">add_circle</span>
+<span class="font-label-md text-label-md">Add</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg bg-action-purple-primary/20 text-action-purple-primary font-bold border-r-4 border-action-purple-primary" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-label-md text-label-md">Reports</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-md text-label-md">Profile</span>
+</a>
+</nav>
+</aside>
+<!-- Main Content Canvas -->
+<main class="md:col-span-9 lg:col-span-10 px-margin-mobile md:px-lg py-6 md:py-12 flex flex-col items-center justify-center min-h-[calc(100vh-80px)] md:min-h-screen">
+<div class="w-full max-w-2xl flex flex-col gap-8">
+<!-- Warning Header Card -->
+<div class="bg-surface-lavender-deep rounded-xl p-6 shadow-[0px_10px_32px_rgba(15,23,42,0.12)] border-l-4 border-error relative overflow-hidden">
+<div class="absolute -top-4 -right-4 w-16 h-16 bg-error-container rounded-full opacity-20 blur-xl"></div>
+<div class="flex items-start gap-4">
+<div class="p-2 bg-error-container rounded-full text-error shrink-0">
+<span class="material-symbols-outlined">warning</span>
+</div>
+<div>
+<h2 class="font-title-md text-title-md text-on-surface mb-2">تأخر في الإنجاز</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">لاحظنا أنك لم تكمل بعض المهام المجدولة مؤخراً. نحن هنا للمساعدة في العودة إلى المسار الصحيح.</p>
+</div>
+</div>
+</div>
+<!-- AI Interaction Section -->
+<div class="bg-surface-lavender-deep rounded-xl p-6 md:p-8 shadow-[0px_4px_20px_rgba(15,23,42,0.05)] border border-surface-variant/50 relative">
+<div class="flex items-center gap-3 mb-6">
+<div class="w-3 h-3 rounded-full bg-action-purple-primary ai-pulse"></div>
+<h3 class="font-title-md text-title-md text-action-purple-primary">المساعد الذكي: ما الذي عطلك؟</h3>
+</div>
+<!-- Options Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-8">
+<label class="cursor-pointer">
+<input class="peer sr-only" name="reason" type="radio">
+<div class="p-4 rounded-lg border border-surface-variant bg-surface-lavender-light peer-checked:border-action-purple-primary peer-checked:bg-action-purple-primary/20 hover:border-action-purple-primary/50 transition-colors flex items-center justify-between">
+<span class="font-body-md text-body-md text-on-surface">لم يكن لدي وقت</span>
+<span class="material-symbols-outlined text-action-purple-primary opacity-0 peer-checked:opacity-100 transition-opacity">check_circle</span>
+</div>
+</label>
+<label class="cursor-pointer">
+<input class="peer sr-only" name="reason" type="radio">
+<div class="p-4 rounded-lg border border-surface-variant bg-surface-lavender-light peer-checked:border-action-purple-primary peer-checked:bg-action-purple-primary/20 hover:border-action-purple-primary/50 transition-colors flex items-center justify-between">
+<span class="font-body-md text-body-md text-on-surface">المهمة صعبة</span>
+<span class="material-symbols-outlined text-action-purple-primary opacity-0 peer-checked:opacity-100 transition-opacity">check_circle</span>
+</div>
+</label>
+<label class="cursor-pointer">
+<input class="peer sr-only" name="reason" type="radio">
+<div class="p-4 rounded-lg border border-surface-variant bg-surface-lavender-light peer-checked:border-action-purple-primary peer-checked:bg-action-purple-primary/20 hover:border-action-purple-primary/50 transition-colors flex items-center justify-between">
+<span class="font-body-md text-body-md text-on-surface">فقدت الحماس</span>
+<span class="material-symbols-outlined text-action-purple-primary opacity-0 peer-checked:opacity-100 transition-opacity">check_circle</span>
+</div>
+</label>
+<label class="cursor-pointer">
+<input class="peer sr-only" name="reason" type="radio">
+<div class="p-4 rounded-lg border border-surface-variant bg-surface-lavender-light peer-checked:border-action-purple-primary peer-checked:bg-action-purple-primary/20 hover:border-action-purple-primary/50 transition-colors flex items-center justify-between">
+<span class="font-body-md text-body-md text-on-surface">لدي أولويات أخرى</span>
+<span class="material-symbols-outlined text-action-purple-primary opacity-0 peer-checked:opacity-100 transition-opacity">check_circle</span>
+</div>
+</label>
+<label class="cursor-pointer md:col-span-2">
+<input class="peer sr-only" id="other-reason-radio" name="reason" type="radio">
+<div class="p-4 rounded-lg border border-surface-variant bg-surface-lavender-light peer-checked:border-action-purple-primary peer-checked:bg-action-purple-primary/20 hover:border-action-purple-primary/50 transition-colors flex items-center justify-between">
+<span class="font-body-md text-body-md text-on-surface">سبب آخر</span>
+<span class="material-symbols-outlined text-action-purple-primary opacity-0 peer-checked:opacity-100 transition-opacity">check_circle</span>
+</div>
+</label>
+<!-- Hidden text area for 'other' -->
+<div class="md:col-span-2 hidden mt-2" id="other-reason-input">
+<textarea class="w-full bg-surface-lavender-light border border-outline-variant rounded-lg p-3 font-body-md text-on-surface focus:border-action-purple-primary focus:ring-1 focus:ring-action-purple-primary transition-all resize-none" placeholder="أخبرنا المزيد..." rows="2"></textarea>
+</div>
+</div>
+<!-- AI Suggestion & Action -->
+<div class="bg-surface-lavender-light/50 p-5 rounded-lg mb-8 border border-outline-variant/30">
+<div class="flex gap-3">
+<span class="material-symbols-outlined text-accent-amber mt-1 shrink-0">lightbulb</span>
+<p class="font-body-md text-body-md text-on-surface leading-relaxed">
+                                لا تقلق، التعثر جزء من الرحلة. بناءً على نمطك، <strong class="text-action-purple-primary">يمكننا إعادة توزيع المهام على الأيام القادمة</strong> لتخفيف الضغط وتسهيل العودة للمسار.
+                            </p>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="flex flex-col sm:flex-row gap-4">
+<button class="flex-1 bg-action-purple-primary text-on-primary py-3 px-6 rounded-lg font-label-md text-label-md hover:bg-action-purple-dark active:scale-95 transition-all flex items-center justify-center gap-2 shadow-sm hover:shadow-md">
+<span class="material-symbols-outlined" style="font-variation-settings: &quot;FILL&quot; 1;">auto_awesome</span>
+                            تعديل الخطة تلقائياً
+                        </button>
+<button class="flex-1 bg-surface-lavender-light border border-action-purple-primary text-action-purple-primary py-3 px-6 rounded-lg font-label-md text-label-md hover:bg-surface-lavender-light/80 active:scale-95 transition-all flex items-center justify-center gap-2">
+                            الاستمرار بالخطة الحالية
+                        </button>
+</div>
+</div>
+</div>
+</main>
+</div>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="fixed bottom-0 w-full z-50 rounded-t-xl bg-surface-lavender-deep dark:bg-primary-container shadow-[0px_-4px_20px_rgba(15,23,42,0.05)] shadow-lg flex justify-around items-center w-full h-20 px-2 pb-safe md:hidden">
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-high dark:hover:bg-primary transition-all active:scale-90 transition-transform w-full h-full" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-sm text-label-sm mt-1">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-high dark:hover:bg-primary transition-all active:scale-90 transition-transform w-full h-full" href="#">
+<span class="material-symbols-outlined">checklist</span>
+<span class="font-label-sm text-label-sm mt-1">Goals</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-high dark:hover:bg-primary transition-all active:scale-90 transition-transform w-full h-full relative -top-4" href="#">
+<div class="bg-action-purple-primary hover:bg-action-purple-dark text-on-primary p-3 rounded-full shadow-lg">
+<span class="material-symbols-outlined" style="font-variation-settings: &quot;FILL&quot; 1;">add</span>
+</div>
+<span class="font-label-sm text-label-sm mt-1">Add</span>
+</a>
+<a class="flex flex-col items-center justify-center text-action-purple-primary dark:text-secondary-fixed font-bold border-t-2 border-action-purple-primary hover:bg-surface-container-high dark:hover:bg-primary transition-all active:scale-90 transition-transform w-full h-full" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: &quot;FILL&quot; 1;">analytics</span>
+<span class="font-label-sm text-label-sm mt-1">Reports</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-high dark:hover:bg-primary transition-all active:scale-90 transition-transform w-full h-full" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-sm text-label-sm mt-1">Profile</span>
+</a>
+</nav>
+<script>
+        // Simple script to toggle 'other' reason textarea
+        const otherRadio = document.getElementById('other-reason-radio');
+        const otherInputDiv = document.getElementById('other-reason-input');
+        const allRadios = document.querySelectorAll('input[name="reason"]');
+
+        allRadios.forEach(radio => {
+            radio.addEventListener('change', () => {
+                if(otherRadio.checked) {
+                    otherInputDiv.classList.remove('hidden');
+                } else {
+                    otherInputDiv.classList.add('hidden');
+                }
+            });
+        });
+    </script>
+
+
+</body></html>

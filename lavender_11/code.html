@@ -1,0 +1,352 @@
+<!DOCTYPE html><html dir="rtl" lang="ar"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>GoalPath - Achievements</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+                "secondary-fixed-dim": "#deb7ff",
+                "outline": "#7d7480",
+                "surface-lavender-deep": "#CCADD9",
+                "surface-container-highest": "#f1dbf8",
+                "tertiary-container": "#006058",
+                "tertiary-fixed-dim": "#6bd8cb",
+                "on-surface-variant": "#4c444f",
+                "surface-container": "#fae8ff",
+                "action-purple-dark": "#532D75",
+                "background": "#fff7fc",
+                "surface-variant": "#f1dbf8",
+                "surface": "#fff7fc",
+                "action-purple-primary": "#6D428F",
+                "tertiary-fixed": "#89f5e7",
+                "on-error-container": "#93000a",
+                "on-background": "#23162b",
+                "on-secondary-container": "#613b84",
+                "error": "#ba1a1a",
+                "on-tertiary-fixed": "#00201d",
+                "on-tertiary-container": "#6fdcce",
+                "secondary-container": "#d9acfe",
+                "on-tertiary": "#ffffff",
+                "tertiary": "#004640",
+                "on-tertiary-fixed-variant": "#005049",
+                "secondary-fixed": "#f1dbff",
+                "outline-variant": "#cec3d1",
+                "on-secondary": "#ffffff",
+                "inverse-primary": "#e1b6ff",
+                "on-secondary-fixed": "#2d014f",
+                "inverse-on-surface": "#fcecff",
+                "surface-bright": "#fff7fc",
+                "on-primary-fixed": "#2e004e",
+                "on-primary-container": "#e3bbff",
+                "surface-tint": "#774b99",
+                "on-secondary-fixed-variant": "#5b357d",
+                "inverse-surface": "#392b41",
+                "primary": "#542a76",
+                "primary-fixed-dim": "#e1b6ff",
+                "surface-container-low": "#fdefff",
+                "accent-amber": "#F59E0B",
+                "on-surface": "#23162b",
+                "primary-fixed": "#f2daff",
+                "secondary": "#744d97",
+                "surface-container-lowest": "#ffffff",
+                "progress-teal": "#0D9488",
+                "primary-container": "#6d428f",
+                "surface-lavender-light": "#E1CCE8",
+                "on-primary-fixed-variant": "#5d337f",
+                "on-error": "#ffffff",
+                "error-container": "#ffdad6",
+                "surface-container-high": "#f7e1fe",
+                "on-primary": "#ffffff",
+                "surface-dim": "#e8d3ef"
+        },
+        "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+        },
+        "spacing": {
+                "container-max": "1280px",
+                "xs": "4px",
+                "sm": "12px",
+                "base": "8px",
+                "lg": "32px",
+                "gutter": "24px",
+                "md": "20px",
+                "margin-mobile": "16px",
+                "xl": "48px"
+        },
+        "fontFamily": {
+                "title-md": [
+                        "IBM Plex Sans Arabic"
+                ],
+                "body-md": [
+                        "IBM Plex Sans Arabic"
+                ],
+                "headline-lg-mobile": [
+                        "IBM Plex Sans Arabic"
+                ],
+                "label-md": [
+                        "IBM Plex Sans Arabic"
+                ],
+                "label-sm": [
+                        "IBM Plex Sans Arabic"
+                ],
+                "headline-lg": [
+                        "IBM Plex Sans Arabic"
+                ],
+                "body-lg": [
+                        "IBM Plex Sans Arabic"
+                ],
+                "display-lg": [
+                        "IBM Plex Sans Arabic"
+                ]
+        },
+        "fontSize": {
+                "title-md": [
+                        "20px",
+                        {
+                                "lineHeight": "28px",
+                                "fontWeight": "600"
+                        }
+                ],
+                "body-md": [
+                        "16px",
+                        {
+                                "lineHeight": "24px",
+                                "fontWeight": "400"
+                        }
+                ],
+                "headline-lg-mobile": [
+                        "24px",
+                        {
+                                "lineHeight": "32px",
+                                "fontWeight": "600"
+                        }
+                ],
+                "label-md": [
+                        "14px",
+                        {
+                                "lineHeight": "20px",
+                                "letterSpacing": "0.02em",
+                                "fontWeight": "500"
+                        }
+                ],
+                "label-sm": [
+                        "12px",
+                        {
+                                "lineHeight": "16px",
+                                "letterSpacing": "0.04em",
+                                "fontWeight": "500"
+                        }
+                ],
+                "headline-lg": [
+                        "32px",
+                        {
+                                "lineHeight": "40px",
+                                "fontWeight": "600"
+                        }
+                ],
+                "body-lg": [
+                        "18px",
+                        {
+                                "lineHeight": "28px",
+                                "fontWeight": "400"
+                        }
+                ],
+                "display-lg": [
+                        "40px",
+                        {
+                                "lineHeight": "52px",
+                                "fontWeight": "700"
+                        }
+                ]
+        }
+},
+    },
+  }
+</script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .icon-fill {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="text-on-surface antialiased min-h-screen pb-24 md:pb-0 font-body-md flex md:flex-row flex-col bg-surface-container-lowest">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 flex items-center justify-between px-margin-mobile h-16 md:hidden bg-surface-container-lowest">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-2xl cursor-pointer" data-icon="target">target</span>
+<span class="font-display-lg text-display-lg font-bold text-primary">GoalPath</span>
+</div>
+<button class="active:scale-95 transition-transform p-2 rounded-full hover:bg-surface-lavender-deep transition-colors text-on-surface-variant">
+<span class="material-symbols-outlined text-2xl" data-icon="notifications">notifications</span>
+</button>
+</header>
+<!-- Side Navigation (Desktop) -->
+<aside class="hidden md:flex flex-col w-[280px] h-screen fixed right-0 bg-surface-container-lowest shadow-[0px_-4px_20px_rgba(15,23,42,0.05)] border-l border-surface-lavender-deep z-40 py-lg px-md shrink-0">
+<div class="flex items-center gap-3 mb-xl px-sm">
+<span class="material-symbols-outlined text-primary text-3xl" data-icon="target">target</span>
+<span class="font-display-lg text-display-lg font-bold text-primary">GoalPath</span>
+</div>
+<nav class="flex flex-col gap-2 flex-1">
+<a class="flex items-center gap-4 px-sm py-3 rounded-lg text-on-surface-variant hover:bg-surface-lavender-deep transition-all group" href="#">
+<span class="material-symbols-outlined text-2xl group-hover:text-secondary transition-colors" data-icon="home">home</span>
+<span class="font-label-md text-label-md">Home</span>
+</a>
+<a class="flex items-center gap-4 px-sm py-3 rounded-lg text-on-surface-variant hover:bg-surface-lavender-deep transition-all group" href="#">
+<span class="material-symbols-outlined text-2xl group-hover:text-secondary transition-colors" data-icon="checklist">checklist</span>
+<span class="font-label-md text-label-md">Goals</span>
+</a>
+<a class="flex items-center gap-4 px-sm py-3 rounded-lg text-secondary font-bold bg-surface-lavender-deep border-r-4 border-secondary group" href="#">
+<span class="material-symbols-outlined text-2xl text-secondary icon-fill" data-icon="analytics">analytics</span>
+<span class="font-label-md text-label-md">Reports</span>
+</a>
+<a class="flex items-center gap-4 px-sm py-3 rounded-lg text-on-surface-variant hover:bg-surface-lavender-deep transition-all group mt-auto" href="#">
+<span class="material-symbols-outlined text-2xl group-hover:text-secondary transition-colors" data-icon="person">person</span>
+<span class="font-label-md text-label-md">Profile</span>
+</a>
+</nav>
+</aside>
+<!-- Main Content Canvas -->
+<main class="flex-1 w-full max-w-container-max mx-auto md:pr-[280px] pt-20 md:pt-lg px-margin-mobile md:px-lg pb-lg">
+<!-- Page Header -->
+<div class="mb-lg flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<h1 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary icon-fill text-3xl" data-icon="social_leaderboard">social_leaderboard</span>
+                    الإنجازات
+                </h1>
+<p class="font-body-md text-body-md text-on-surface-variant mt-2">نظرة عامة على تقدمك ومكافآتك.</p>
+</div>
+<button class="bg-action-purple-primary text-white px-6 py-2 rounded-lg font-label-md text-label-md hover:bg-action-purple-dark transition-all active:scale-95 shadow-sm hover:shadow-md flex items-center justify-center gap-2 w-full md:w-auto">
+<span class="material-symbols-outlined text-xl" data-icon="share">share</span>
+                مشاركة الإنجازات
+            </button>
+</div>
+<!-- High-level Stats (Bento-ish) -->
+<section class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-xl">
+<div class="bg-surface-container-lowest p-5 rounded-xl shadow-[0px_4px_20px_rgba(15,23,42,0.05)] border border-surface-lavender-deep flex flex-col items-center justify-center relative overflow-hidden group">
+<div class="absolute -right-4 -top-4 w-16 h-16 bg-accent-amber/30 rounded-full group-hover:scale-150 transition-transform duration-500"></div>
+<span class="material-symbols-outlined text-secondary text-3xl mb-2 icon-fill" data-icon="workspace_premium">workspace_premium</span>
+<span class="font-display-lg text-[32px] font-bold text-primary leading-tight">1,250</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant mt-1">النقاط</span>
+</div>
+<div class="bg-surface-container-lowest p-5 rounded-xl shadow-[0px_4px_20px_rgba(15,23,42,0.05)] border border-surface-lavender-deep flex flex-col items-center justify-center relative overflow-hidden group">
+<div class="absolute -right-4 -top-4 w-16 h-16 bg-surface-lavender-deep/50 rounded-full group-hover:scale-150 transition-transform duration-500"></div>
+<span class="material-symbols-outlined text-tertiary-fixed-dim text-3xl mb-2 icon-fill" data-icon="military_tech">military_tech</span>
+<span class="font-display-lg text-[32px] font-bold text-primary leading-tight">12</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant mt-1">الشارات</span>
+</div>
+<div class="bg-surface-container-lowest p-5 rounded-xl shadow-[0px_4px_20px_rgba(15,23,42,0.05)] border border-surface-lavender-deep flex flex-col items-center justify-center relative overflow-hidden group">
+<div class="absolute -right-4 -top-4 w-16 h-16 bg-surface-lavender-deep/50 rounded-full group-hover:scale-150 transition-transform duration-500"></div>
+<span class="material-symbols-outlined text-error text-3xl mb-2 icon-fill" data-icon="local_fire_department">local_fire_department</span>
+<span class="font-display-lg text-[32px] font-bold text-primary leading-tight">5</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant mt-1">سلسلة الأيام</span>
+</div>
+<div class="bg-surface-container-lowest p-5 rounded-xl shadow-[0px_4px_20px_rgba(15,23,42,0.05)] border border-surface-lavender-deep flex flex-col items-center justify-center relative overflow-hidden group">
+<div class="absolute -right-4 -top-4 w-16 h-16 bg-progress-teal/30 rounded-full group-hover:scale-150 transition-transform duration-500"></div>
+<span class="material-symbols-outlined text-primary text-3xl mb-2 icon-fill" data-icon="task_alt">task_alt</span>
+<span class="font-display-lg text-[32px] font-bold text-primary leading-tight">48</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant mt-1">أهداف مكتملة</span>
+</div>
+</section>
+<!-- Badge Grid Section -->
+<section>
+<h2 class="font-title-md text-title-md text-primary mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary" data-icon="grid_view">grid_view</span>
+                لوحة الشارات
+            </h2>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+<!-- Badge 1: Unlocked -->
+<div class="bg-surface-container-lowest rounded-xl p-5 shadow-[0px_4px_20px_rgba(15,23,42,0.05)] border border-surface-lavender-deep flex flex-col items-center text-center group cursor-pointer hover:-translate-y-1 transition-transform">
+<div class="w-20 h-20 rounded-full bg-surface-container-lowest flex items-center justify-center mb-4 relative">
+<span class="material-symbols-outlined text-4xl text-secondary icon-fill" data-icon="flag">flag</span>
+<div class="absolute inset-0 border-2 border-secondary rounded-full opacity-0 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300"></div>
+</div>
+<h3 class="font-title-md text-title-md text-primary mb-1">أول هدف</h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant mb-3">أكملت أول هدف لك بنجاح.</p>
+<span class="text-xs bg-surface-lavender-deep text-on-surface-variant px-2 py-1 rounded font-medium">مكتسبة</span>
+</div>
+<!-- Badge 2: Unlocked -->
+<div class="bg-surface-container-lowest rounded-xl p-5 shadow-[0px_4px_20px_rgba(15,23,42,0.05)] border border-surface-lavender-deep flex flex-col items-center text-center group cursor-pointer hover:-translate-y-1 transition-transform">
+<div class="w-20 h-20 rounded-full bg-surface-container-lowest flex items-center justify-center mb-4 relative">
+<span class="material-symbols-outlined text-4xl text-tertiary-fixed-dim icon-fill" data-icon="calendar_month">calendar_month</span>
+<div class="absolute inset-0 border-2 border-tertiary-fixed-dim rounded-full opacity-0 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300"></div>
+</div>
+<h3 class="font-title-md text-title-md text-primary mb-1">7 أيام متتالية</h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant mb-3">حافظت على نشاطك لمدة أسبوع.</p>
+<span class="text-xs bg-surface-lavender-deep text-on-surface-variant px-2 py-1 rounded font-medium">مكتسبة</span>
+</div>
+<!-- Badge 3: In Progress -->
+<div class="bg-surface-container-lowest rounded-xl p-5 shadow-[0px_4px_20px_rgba(15,23,42,0.05)] border border-surface-lavender-deep flex flex-col items-center text-center relative overflow-hidden">
+<div class="w-20 h-20 rounded-full bg-surface-container-lowest flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-4xl text-outline-variant" data-icon="checklist">checklist</span>
+</div>
+<h3 class="font-title-md text-title-md text-on-surface-variant mb-1">10 مهام مكتملة</h3>
+<p class="font-label-sm text-label-sm text-outline mb-4">أكمل 10 مهام فرعية لفتحها.</p>
+<div class="w-full h-2 bg-surface-lavender-deep rounded-full overflow-hidden mt-auto">
+<div class="h-full bg-action-purple-primary w-[60%] rounded-full rtl:origin-right"></div>
+</div>
+<span class="font-label-sm text-label-sm text-outline mt-1 self-start">6/10</span>
+</div>
+<!-- Badge 4: Locked -->
+<div class="bg-surface-container-lowest rounded-xl p-5 shadow-[0px_4px_20px_rgba(15,23,42,0.05)] border border-surface-lavender-deep flex flex-col items-center text-center opacity-70 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300">
+<div class="w-20 h-20 rounded-full bg-surface-container-lowest flex items-center justify-center mb-4 relative">
+<span class="material-symbols-outlined text-4xl text-outline" data-icon="lock">lock</span>
+</div>
+<h3 class="font-title-md text-title-md text-on-surface-variant mb-1">هدف مكتمل 100%</h3>
+<p class="font-label-sm text-label-sm text-outline mb-3">أنهِ هدفاً رئيسياً بجميع مهامه.</p>
+<span class="text-xs border border-outline text-outline px-2 py-1 rounded font-medium mt-auto flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]" data-icon="lock">lock</span> مقفلة
+                    </span>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation (Mobile) -->
+<nav class="bg-surface-container-lowest fixed bottom-0 w-full z-50 rounded-t-xl shadow-[0px_-4px_20px_rgba(15,23,42,0.05)] flex justify-around items-center h-20 px-2 pb-safe md:hidden">
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-lavender-deep transition-all p-2 rounded-lg w-16" href="#">
+<span class="material-symbols-outlined text-2xl" data-icon="home">home</span>
+<span class="font-label-sm text-label-sm mt-1">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-lavender-deep transition-all p-2 rounded-lg w-16" href="#">
+<span class="material-symbols-outlined text-2xl" data-icon="checklist">checklist</span>
+<span class="font-label-sm text-label-sm mt-1">Goals</span>
+</a>
+<a class="flex flex-col items-center justify-center -mt-8 bg-surface-lavender-light rounded-full p-2" href="#">
+<div class="bg-action-purple-primary text-white hover:bg-action-purple-dark rounded-full w-12 h-12 flex items-center justify-center shadow-lg active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-2xl" data-icon="add">add</span>
+</div>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary font-bold border-t-2 border-secondary hover:bg-surface-lavender-deep transition-all p-2 rounded-lg w-16 h-full" href="#">
+<span class="material-symbols-outlined text-2xl icon-fill text-secondary" data-icon="analytics">analytics</span>
+<span class="font-label-sm text-label-sm mt-1">Reports</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-lavender-deep transition-all p-2 rounded-lg w-16" href="#">
+<span class="material-symbols-outlined text-2xl" data-icon="person">person</span>
+<span class="font-label-sm text-label-sm mt-1">Profile</span>
+</a>
+</nav>
+
+
+
+
+
+
+</body></html>

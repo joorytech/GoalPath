@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+
+<html dir="rtl" lang="ar"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>GoalPath Dashboard</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts: IBM Plex Sans Arabic -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+                "secondary-fixed-dim": "#deb7ff",
+                "outline": "#7d7480",
+                "surface-lavender-deep": "#CCADD9",
+                "surface-container-highest": "#f1dbf8",
+                "tertiary-container": "#006058",
+                "tertiary-fixed-dim": "#6bd8cb",
+                "on-surface-variant": "#4c444f",
+                "surface-container": "#fae8ff",
+                "action-purple-dark": "#532D75",
+                "background": "#fff7fc",
+                "surface-variant": "#f1dbf8",
+                "surface": "#fff7fc",
+                "action-purple-primary": "#6D428F",
+                "tertiary-fixed": "#89f5e7",
+                "on-error-container": "#93000a",
+                "on-background": "#23162b",
+                "on-secondary-container": "#613b84",
+                "error": "#ba1a1a",
+                "on-tertiary-fixed": "#00201d",
+                "on-tertiary-container": "#6fdcce",
+                "secondary-container": "#d9acfe",
+                "on-tertiary": "#ffffff",
+                "tertiary": "#004640",
+                "on-tertiary-fixed-variant": "#005049",
+                "secondary-fixed": "#f1dbff",
+                "outline-variant": "#cec3d1",
+                "on-secondary": "#ffffff",
+                "inverse-primary": "#e1b6ff",
+                "on-secondary-fixed": "#2d014f",
+                "inverse-on-surface": "#fcecff",
+                "surface-bright": "#fff7fc",
+                "on-primary-fixed": "#2e004e",
+                "on-primary-container": "#e3bbff",
+                "surface-tint": "#774b99",
+                "on-secondary-fixed-variant": "#5b357d",
+                "inverse-surface": "#392b41",
+                "primary": "#542a76",
+                "primary-fixed-dim": "#e1b6ff",
+                "surface-container-low": "#fdefff",
+                "accent-amber": "#F59E0B",
+                "on-surface": "#23162b",
+                "primary-fixed": "#f2daff",
+                "secondary": "#744d97",
+                "surface-container-lowest": "#ffffff",
+                "progress-teal": "#0D9488",
+                "primary-container": "#6d428f",
+                "surface-lavender-light": "#E1CCE8",
+                "on-primary-fixed-variant": "#5d337f",
+                "on-error": "#ffffff",
+                "error-container": "#ffdad6",
+                "surface-container-high": "#f7e1fe",
+                "on-primary": "#ffffff",
+                "surface-dim": "#e8d3ef"
+        },
+        "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+        },
+        "spacing": {
+                "container-max": "1280px",
+                "xs": "4px",
+                "sm": "12px",
+                "base": "8px",
+                "lg": "32px",
+                "gutter": "24px",
+                "md": "20px",
+                "margin-mobile": "16px",
+                "xl": "48px"
+        },
+        "fontFamily": {
+                "title-md": [
+                        "IBM Plex Sans Arabic"
+                ],
+                "body-md": [
+                        "IBM Plex Sans Arabic"
+                ],
+                "headline-lg-mobile": [
+                        "IBM Plex Sans Arabic"
+                ],
+                "label-md": [
+                        "IBM Plex Sans Arabic"
+                ],
+                "label-sm": [
+                        "IBM Plex Sans Arabic"
+                ],
+                "headline-lg": [
+                        "IBM Plex Sans Arabic"
+                ],
+                "body-lg": [
+                        "IBM Plex Sans Arabic"
+                ],
+                "display-lg": [
+                        "IBM Plex Sans Arabic"
+                ]
+        },
+        "fontSize": {
+                "title-md": [
+                        "20px",
+                        {
+                                "lineHeight": "28px",
+                                "fontWeight": "600"
+                        }
+                ],
+                "body-md": [
+                        "16px",
+                        {
+                                "lineHeight": "24px",
+                                "fontWeight": "400"
+                        }
+                ],
+                "headline-lg-mobile": [
+                        "24px",
+                        {
+                                "lineHeight": "32px",
+                                "fontWeight": "600"
+                        }
+                ],
+                "label-md": [
+                        "14px",
+                        {
+                                "lineHeight": "20px",
+                                "letterSpacing": "0.02em",
+                                "fontWeight": "500"
+                        }
+                ],
+                "label-sm": [
+                        "12px",
+                        {
+                                "lineHeight": "16px",
+                                "letterSpacing": "0.04em",
+                                "fontWeight": "500"
+                        }
+                ],
+                "headline-lg": [
+                        "32px",
+                        {
+                                "lineHeight": "40px",
+                                "fontWeight": "600"
+                        }
+                ],
+                "body-lg": [
+                        "18px",
+                        {
+                                "lineHeight": "28px",
+                                "fontWeight": "400"
+                        }
+                ],
+                "display-lg": [
+                        "40px",
+                        {
+                                "lineHeight": "52px",
+                                "fontWeight": "700"
+                        }
+                ]
+        }
+},
+    },
+  }
+</script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.filled {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-surface-lavender-light text-on-background antialiased min-h-screen pb-24 pt-16 selection:bg-surface-lavender-deep selection:text-on-secondary-container flex justify-center">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-surface-lavender-light dark:bg-surface-dim flex items-center justify-between px-margin-mobile h-16 max-w-container-max mx-auto shadow-[0px_4px_20px_rgba(15,23,42,0.02)]">
+<div class="flex items-center gap-sm">
+<button class="text-on-surface-variant dark:text-outline hover:bg-surface-lavender-deep transition-colors active:scale-95 p-2 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined">target</span>
+</button>
+<h1 class="font-display-lg text-display-lg font-bold text-action-purple-primary dark:text-primary-fixed" style="font-size: 24px; line-height: 32px;">GoalPath</h1>
+</div>
+<div class="flex items-center gap-sm">
+<button class="text-on-surface-variant dark:text-outline hover:bg-surface-lavender-deep transition-colors active:scale-95 p-2 rounded-full flex items-center justify-center relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<img class="w-8 h-8 rounded-full object-cover border border-surface-container-highest" data-alt="A small, circular profile picture placeholder in a modern minimalist style, set against a pristine white background. The image serves as a generic user avatar, illuminated by soft, diffuse studio lighting to maintain a clean, professional aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAPHgNStjd3usJC5CiuW3wKv9sT5aORmitvsNXyR7fMPOCyr8ePuN8xZN-yI4AGviofKvC3vq1IXfUGSKL8oPy8JUbtxFySH7owTyFZZEubD3Mib5l1J1F9t5_CTZ1ggl6pyOzoZ4dc-bL1iR33--DMJLM2hMo6ztnAufu39dLND8UVFXb-Px7iLJuK0pAX1D4iZ1HGVlhK-5M6_yApoWb_BHLfFYJkF1vgMRb9FrDT_6XM7TWHNnsf"/>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="w-full max-w-container-max px-margin-mobile md:px-lg flex flex-col gap-lg mt-base">
+<!-- Header & Date -->
+<div class="flex justify-between items-end mt-sm">
+<div>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface">مرحباً بعودتك!</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-xs">نظرة عامة على مسارك اليوم.</p>
+</div>
+<div class="text-action-purple-primary font-label-md text-label-md bg-surface-lavender-deep/50 px-sm py-1 rounded-full flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">calendar_today</span>
+<span>اليوم</span>
+</div>
+</div>
+<!-- Bento Grid Statistics -->
+<section class="grid grid-cols-2 md:grid-cols-4 gap-sm md:gap-md">
+<!-- Stat Card 1 -->
+<div class="bg-surface-container-lowest rounded-xl p-md shadow-[0px_4px_20px_rgba(15,23,42,0.05)] flex flex-col justify-between border border-surface-lavender-deep">
+<div class="flex justify-between items-start mb-sm">
+<span class="font-label-md text-label-md text-on-surface-variant">الأهداف النشطة</span>
+<span class="material-symbols-outlined text-action-purple-primary bg-surface-lavender-deep/50 p-1 rounded-md text-[20px]">directions_run</span>
+</div>
+<span class="font-display-lg text-display-lg text-action-purple-primary">3</span>
+</div>
+<!-- Stat Card 2 -->
+<div class="bg-surface-container-lowest rounded-xl p-md shadow-[0px_4px_20px_rgba(15,23,42,0.05)] flex flex-col justify-between border border-surface-lavender-deep">
+<div class="flex justify-between items-start mb-sm">
+<span class="font-label-md text-label-md text-on-surface-variant">الأهداف المكتملة</span>
+<span class="material-symbols-outlined text-action-purple-primary bg-surface-lavender-deep/50 p-1 rounded-md text-[20px]">task_alt</span>
+</div>
+<span class="font-display-lg text-display-lg text-action-purple-primary">5</span>
+</div>
+<!-- Stat Card 3 -->
+<div class="bg-surface-container-lowest rounded-xl p-md shadow-[0px_4px_20px_rgba(15,23,42,0.05)] flex flex-col justify-between border border-surface-lavender-deep">
+<div class="flex justify-between items-start mb-sm">
+<span class="font-label-md text-label-md text-on-surface-variant">المهام المتبقية</span>
+<span class="material-symbols-outlined text-action-purple-primary bg-surface-lavender-deep/50 p-1 rounded-md text-[20px]">list_alt</span>
+</div>
+<span class="font-display-lg text-display-lg text-action-purple-primary">12</span>
+</div>
+<!-- Stat Card 4 (Highlight) -->
+<div class="bg-action-purple-primary text-on-primary rounded-xl p-md shadow-[0px_10px_32px_rgba(15,23,42,0.12)] flex flex-col justify-between relative overflow-hidden">
+<div class="absolute -right-4 -top-4 w-24 h-24 bg-surface-lavender-deep rounded-full opacity-50 blur-xl"></div>
+<div class="flex justify-between items-start mb-sm relative z-10">
+<span class="font-label-md text-label-md text-inverse-primary">نسبة الإنجاز العامة</span>
+<span class="material-symbols-outlined text-surface-lavender-deep text-[20px]">monitoring</span>
+</div>
+<div class="flex items-end gap-2 relative z-10">
+<span class="font-display-lg text-display-lg text-on-primary">65</span>
+<span class="font-title-md text-title-md text-inverse-primary pb-2">%</span>
+</div>
+</div>
+</section>
+<!-- Goals Section -->
+<section class="flex flex-col gap-sm">
+<div class="flex justify-between items-center mb-xs">
+<h3 class="font-title-md text-title-md text-on-surface">أهدافي</h3>
+<button class="font-label-md text-label-md text-action-purple-primary hover:text-action-purple-dark transition-colors flex items-center gap-1">
+<span>عرض الكل</span>
+<span class="material-symbols-outlined text-[18px]">arrow_back</span>
+</button>
+</div>
+<!-- Goal Card -->
+<article class="bg-surface-container-lowest rounded-xl p-md shadow-[0px_4px_20px_rgba(15,23,42,0.05)] border border-surface-lavender-deep flex flex-col gap-sm hover:shadow-[0px_10px_32px_rgba(15,23,42,0.08)] transition-shadow">
+<div class="flex justify-between items-start">
+<div class="flex gap-sm">
+<div class="w-12 h-12 bg-surface-lavender-deep/30 rounded-lg flex items-center justify-center text-action-purple-primary">
+<span class="material-symbols-outlined text-[28px]">code</span>
+</div>
+<div class="flex flex-col">
+<h4 class="font-title-md text-title-md text-action-purple-primary">تعلم Python خلال 3 أشهر</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">إتقان البرمجة من الصفر</p>
+</div>
+</div>
+<!-- Smart Badge -->
+<div class="bg-surface-lavender-deep/30 border border-surface-lavender-deep text-action-purple-primary px-2 py-1 rounded-md flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] filled">auto_awesome</span>
+<span class="font-label-sm text-label-sm">مسار ذكي</span>
+</div>
+</div>
+<!-- Dates -->
+<div class="flex items-center gap-md font-label-sm text-label-sm text-outline mt-xs">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">flag</span>
+<span>البداية: 1 أكتوبر</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">sports_score</span>
+<span>النهاية: 31 ديسمبر</span>
+</div>
+</div>
+<!-- Progress Section -->
+<div class="flex flex-col gap-xs mt-sm">
+<div class="flex justify-between font-label-md text-label-md">
+<span class="text-on-surface">تقدم الهدف</span>
+<span class="text-action-purple-primary font-bold">40%</span>
+</div>
+<!-- Progress Bar -->
+<div class="w-full h-2 bg-surface-lavender-deep/50 rounded-full overflow-hidden">
+<div class="h-full bg-action-purple-primary rounded-full" style="width: 40%;"></div>
+</div>
+<div class="font-label-sm text-label-sm text-outline text-left">
+                        4 من 10 مهام مكتملة
+                    </div>
+</div>
+<!-- Actions -->
+<div class="flex justify-end mt-sm pt-sm border-t border-surface-lavender-deep">
+<button class="border border-action-purple-primary text-action-purple-primary hover:bg-surface-lavender-deep/30 hover:text-action-purple-dark hover:border-action-purple-dark font-label-md text-label-md px-md py-2 rounded-lg transition-colors active:scale-95">
+                        عرض التفاصيل
+                    </button>
+</div>
+</article>
+</section>
+</main>
+<!-- FAB -->
+<div class="fixed bottom-28 left-4 z-40">
+<button class="bg-action-purple-primary hover:bg-action-purple-dark text-on-primary font-label-md text-label-md px-md py-3 rounded-xl shadow-[0px_10px_32px_rgba(15,23,42,0.12)] hover:-translate-y-1 hover:shadow-lg transition-all active:scale-95 flex items-center gap-2">
+<span class="material-symbols-outlined">add</span>
+<span>إضافة هدف جديد</span>
+</button>
+</div>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full z-50 rounded-t-xl bg-surface-container-lowest dark:bg-primary-container shadow-[0px_-4px_20px_rgba(15,23,42,0.05)] flex justify-around items-center h-20 px-2 pb-safe max-w-container-max mx-auto md:hidden">
+<!-- Home (Active) -->
+<button class="flex flex-col items-center justify-center text-action-purple-primary dark:text-secondary-fixed font-bold border-t-2 border-action-purple-primary hover:bg-surface-lavender-deep/30 dark:hover:bg-primary transition-all active:scale-90 w-full h-full pt-2">
+<span class="material-symbols-outlined filled mb-1">home</span>
+<span class="font-label-sm text-label-sm">Home</span>
+</button>
+<!-- Goals -->
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant hover:bg-surface-lavender-deep/30 dark:hover:bg-primary transition-all active:scale-90 w-full h-full pt-2">
+<span class="material-symbols-outlined mb-1">checklist</span>
+<span class="font-label-sm text-label-sm">Goals</span>
+</button>
+<!-- Add -->
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant hover:bg-surface-lavender-deep/30 dark:hover:bg-primary transition-all active:scale-90 w-full h-full pt-2">
+<span class="material-symbols-outlined mb-1">add_circle</span>
+<span class="font-label-sm text-label-sm">Add</span>
+</button>
+<!-- Reports -->
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant hover:bg-surface-lavender-deep/30 dark:hover:bg-primary transition-all active:scale-90 w-full h-full pt-2">
+<span class="material-symbols-outlined mb-1">analytics</span>
+<span class="font-label-sm text-label-sm">Reports</span>
+</button>
+<!-- Profile -->
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant hover:bg-surface-lavender-deep/30 dark:hover:bg-primary transition-all active:scale-90 w-full h-full pt-2">
+<span class="material-symbols-outlined mb-1">person</span>
+<span class="font-label-sm text-label-sm">Profile</span>
+</button>
+</nav>
+</body></html>

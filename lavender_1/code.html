@@ -1,0 +1,226 @@
+<!DOCTYPE html><html class="light" dir="rtl" lang="ar"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>GoalPath – مسار الإنجاز الذكي</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Google Fonts: IBM Plex Sans Arabic -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+                "secondary-fixed-dim": "#deb7ff",
+                "outline": "#7d7480",
+                "surface-lavender-deep": "#CCADD9",
+                "surface-container-highest": "#f1dbf8",
+                "tertiary-container": "#006058",
+                "tertiary-fixed-dim": "#6bd8cb",
+                "on-surface-variant": "#4c444f",
+                "surface-container": "#fae8ff",
+                "action-purple-dark": "#532D75",
+                "background": "#fff7fc",
+                "surface-variant": "#f1dbf8",
+                "surface": "#fff7fc",
+                "action-purple-primary": "#6D428F",
+                "tertiary-fixed": "#89f5e7",
+                "on-error-container": "#93000a",
+                "on-background": "#23162b",
+                "on-secondary-container": "#613b84",
+                "error": "#ba1a1a",
+                "on-tertiary-fixed": "#00201d",
+                "on-tertiary-container": "#6fdcce",
+                "secondary-container": "#d9acfe",
+                "on-tertiary": "#ffffff",
+                "tertiary": "#004640",
+                "on-tertiary-fixed-variant": "#005049",
+                "secondary-fixed": "#f1dbff",
+                "outline-variant": "#cec3d1",
+                "on-secondary": "#ffffff",
+                "inverse-primary": "#e1b6ff",
+                "on-secondary-fixed": "#2d014f",
+                "inverse-on-surface": "#fcecff",
+                "surface-bright": "#fff7fc",
+                "on-primary-fixed": "#2e004e",
+                "on-primary-container": "#e3bbff",
+                "surface-tint": "#774b99",
+                "on-secondary-fixed-variant": "#5b357d",
+                "inverse-surface": "#392b41",
+                "primary": "#542a76",
+                "primary-fixed-dim": "#e1b6ff",
+                "surface-container-low": "#fdefff",
+                "accent-amber": "#F59E0B",
+                "on-surface": "#23162b",
+                "primary-fixed": "#f2daff",
+                "secondary": "#744d97",
+                "surface-container-lowest": "#ffffff",
+                "progress-teal": "#0D9488",
+                "primary-container": "#6d428f",
+                "surface-lavender-light": "#E1CCE8",
+                "on-primary-fixed-variant": "#5d337f",
+                "on-error": "#ffffff",
+                "error-container": "#ffdad6",
+                "surface-container-high": "#f7e1fe",
+                "on-primary": "#ffffff",
+                "surface-dim": "#e8d3ef"
+        },
+        "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+        },
+        "spacing": {
+                "container-max": "1280px",
+                "xs": "4px",
+                "sm": "12px",
+                "base": "8px",
+                "lg": "32px",
+                "gutter": "24px",
+                "md": "20px",
+                "margin-mobile": "16px",
+                "xl": "48px"
+        },
+        "fontFamily": {
+                "title-md": [
+                        "IBM Plex Sans Arabic"
+                ],
+                "body-md": [
+                        "IBM Plex Sans Arabic"
+                ],
+                "headline-lg-mobile": [
+                        "IBM Plex Sans Arabic"
+                ],
+                "label-md": [
+                        "IBM Plex Sans Arabic"
+                ],
+                "label-sm": [
+                        "IBM Plex Sans Arabic"
+                ],
+                "headline-lg": [
+                        "IBM Plex Sans Arabic"
+                ],
+                "body-lg": [
+                        "IBM Plex Sans Arabic"
+                ],
+                "display-lg": [
+                        "IBM Plex Sans Arabic"
+                ]
+        },
+        "fontSize": {
+                "title-md": [
+                        "20px",
+                        {
+                                "lineHeight": "28px",
+                                "fontWeight": "600"
+                        }
+                ],
+                "body-md": [
+                        "16px",
+                        {
+                                "lineHeight": "24px",
+                                "fontWeight": "400"
+                        }
+                ],
+                "headline-lg-mobile": [
+                        "24px",
+                        {
+                                "lineHeight": "32px",
+                                "fontWeight": "600"
+                        }
+                ],
+                "label-md": [
+                        "14px",
+                        {
+                                "lineHeight": "20px",
+                                "letterSpacing": "0.02em",
+                                "fontWeight": "500"
+                        }
+                ],
+                "label-sm": [
+                        "12px",
+                        {
+                                "lineHeight": "16px",
+                                "letterSpacing": "0.04em",
+                                "fontWeight": "500"
+                        }
+                ],
+                "headline-lg": [
+                        "32px",
+                        {
+                                "lineHeight": "40px",
+                                "fontWeight": "600"
+                        }
+                ],
+                "body-lg": [
+                        "18px",
+                        {
+                                "lineHeight": "28px",
+                                "fontWeight": "400"
+                        }
+                ],
+                "display-lg": [
+                        "40px",
+                        {
+                                "lineHeight": "52px",
+                                "fontWeight": "700"
+                        }
+                ]
+        }
+},
+    },
+  }
+</script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-surface-container-lowest text-on-surface antialiased min-h-screen flex flex-col relative overflow-hidden"><!-- Subtle ambient background elements removed for pure white background -->
+<div class="absolute inset-0 pointer-events-none overflow-hidden flex justify-center items-center opacity-30">
+</div>
+<!-- Main Canvas -->
+<main class="flex-grow flex flex-col items-center justify-center p-margin-mobile relative z-10 w-full max-w-md mx-auto h-full">
+<!-- Content Container -->
+<div class="flex flex-col items-center text-center w-full space-y-lg animate-[fadeIn_0.5s_ease-out]">
+<!-- Logo area -->
+<div class="flex flex-col items-center justify-center mb-md">
+<img class="w-48 h-48 object-contain drop-shadow-xl hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAPHgNStjd3usJC5CiuW3wKv9sT5aORmitvsNXyR7fMPOCyr8ePuN8xZN-yI4AGviofKvC3vq1IXfUGSKL8oPy8JUbtxFySH7owTyFZZEubD3Mib5l1J1F9t5_CTZ1ggl6pyOzoZ4dc-bL1iR33--DMJLM2hMo6ztnAufu39dLND8UVFXb-Px7iLJuK0pAX1D4iZ1HGVlhK-5M6_yApoWb_BHLfFYJkF1vgMRb9FrDT_6XM7TWHNnsf">
+</div>
+<!-- Typography & Messaging -->
+<div class="flex flex-col items-center space-y-sm max-w-[320px]">
+<h1 class="font-display-lg text-display-lg text-primary tracking-tight">
+                    GoalPath
+                    <span class="block font-headline-lg-mobile text-headline-lg-mobile text-secondary mt-xs opacity-90">مسار الإنجاز الذكي</span>
+</h1>
+<h2 class="font-title-md text-title-md text-on-surface mt-md leading-relaxed">
+                    حوّل هدفك إلى خطوات وحقق إنجازك
+                </h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-[280px] mx-auto leading-relaxed">
+                    حدد هدفك ودع التطبيق يساعدك على تقسيمه ومتابعته حتى الإنجاز.
+                </p>
+</div>
+<!-- Action Buttons -->
+<div class="flex flex-col w-full gap-base mt-xl max-w-[320px]">
+<button class="bg-action-purple-primary text-on-primary font-label-md text-label-md h-12 w-full rounded-xl flex items-center justify-center shadow-[0_4px_14px_0_rgba(9,20,38,0.25)] hover:bg-action-purple-dark hover:shadow-[0_6px_20_rgba(9,20,38,0.23)] transition-all duration-300 active:scale-[0.98]">
+<span class="">ابدأ الآن</span>
+<span class="material-symbols-outlined mr-2 text-[20px]" style="font-variation-settings: 'FILL' 1;">arrow_back</span>
+</button>
+<button class="bg-transparent border-2 border-action-purple-primary text-action-purple-primary font-label-md text-label-md h-12 w-full rounded-xl flex items-center justify-center hover:bg-action-purple-primary/10 transition-all duration-300 active:scale-[0.98]">
+                    تسجيل الدخول
+                </button>
+</div>
+</div>
+</main>
+<style>
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style></body></html>

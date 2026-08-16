@@ -1,0 +1,342 @@
+<!DOCTYPE html><html class="light" dir="rtl" lang="ar"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>GoalPath - Profile &amp; Settings</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config -->
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+                "secondary-fixed-dim": "#deb7ff",
+                "outline": "#7d7480",
+                "surface-lavender-deep": "#CCADD9",
+                "surface-container-highest": "#f1dbf8",
+                "tertiary-container": "#006058",
+                "tertiary-fixed-dim": "#6bd8cb",
+                "on-surface-variant": "#4c444f",
+                "surface-container": "#fae8ff",
+                "action-purple-dark": "#532D75",
+                "background": "#fff7fc",
+                "surface-variant": "#f1dbf8",
+                "surface": "#fff7fc",
+                "action-purple-primary": "#6D428F",
+                "tertiary-fixed": "#89f5e7",
+                "on-error-container": "#93000a",
+                "on-background": "#23162b",
+                "on-secondary-container": "#613b84",
+                "error": "#ba1a1a",
+                "on-tertiary-fixed": "#00201d",
+                "on-tertiary-container": "#6fdcce",
+                "secondary-container": "#d9acfe",
+                "on-tertiary": "#ffffff",
+                "tertiary": "#004640",
+                "on-tertiary-fixed-variant": "#005049",
+                "secondary-fixed": "#f1dbff",
+                "outline-variant": "#cec3d1",
+                "on-secondary": "#ffffff",
+                "inverse-primary": "#e1b6ff",
+                "on-secondary-fixed": "#2d014f",
+                "inverse-on-surface": "#fcecff",
+                "surface-bright": "#fff7fc",
+                "on-primary-fixed": "#2e004e",
+                "on-primary-container": "#e3bbff",
+                "surface-tint": "#774b99",
+                "on-secondary-fixed-variant": "#5b357d",
+                "inverse-surface": "#392b41",
+                "primary": "#542a76",
+                "primary-fixed-dim": "#e1b6ff",
+                "surface-container-low": "#fdefff",
+                "accent-amber": "#F59E0B",
+                "on-surface": "#23162b",
+                "primary-fixed": "#f2daff",
+                "secondary": "#744d97",
+                "surface-container-lowest": "#ffffff",
+                "progress-teal": "#0D9488",
+                "primary-container": "#6d428f",
+                "surface-lavender-light": "#E1CCE8",
+                "on-primary-fixed-variant": "#5d337f",
+                "on-error": "#ffffff",
+                "error-container": "#ffdad6",
+                "surface-container-high": "#f7e1fe",
+                "on-primary": "#ffffff",
+                "surface-dim": "#e8d3ef"
+        },
+        "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+        },
+        "spacing": {
+                "container-max": "1280px",
+                "xs": "4px",
+                "sm": "12px",
+                "base": "8px",
+                "lg": "32px",
+                "gutter": "24px",
+                "md": "20px",
+                "margin-mobile": "16px",
+                "xl": "48px"
+        },
+        "fontFamily": {
+                "title-md": [
+                        "IBM Plex Sans Arabic"
+                ],
+                "body-md": [
+                        "IBM Plex Sans Arabic"
+                ],
+                "headline-lg-mobile": [
+                        "IBM Plex Sans Arabic"
+                ],
+                "label-md": [
+                        "IBM Plex Sans Arabic"
+                ],
+                "label-sm": [
+                        "IBM Plex Sans Arabic"
+                ],
+                "headline-lg": [
+                        "IBM Plex Sans Arabic"
+                ],
+                "body-lg": [
+                        "IBM Plex Sans Arabic"
+                ],
+                "display-lg": [
+                        "IBM Plex Sans Arabic"
+                ]
+        },
+        "fontSize": {
+                "title-md": [
+                        "20px",
+                        {
+                                "lineHeight": "28px",
+                                "fontWeight": "600"
+                        }
+                ],
+                "body-md": [
+                        "16px",
+                        {
+                                "lineHeight": "24px",
+                                "fontWeight": "400"
+                        }
+                ],
+                "headline-lg-mobile": [
+                        "24px",
+                        {
+                                "lineHeight": "32px",
+                                "fontWeight": "600"
+                        }
+                ],
+                "label-md": [
+                        "14px",
+                        {
+                                "lineHeight": "20px",
+                                "letterSpacing": "0.02em",
+                                "fontWeight": "500"
+                        }
+                ],
+                "label-sm": [
+                        "12px",
+                        {
+                                "lineHeight": "16px",
+                                "letterSpacing": "0.04em",
+                                "fontWeight": "500"
+                        }
+                ],
+                "headline-lg": [
+                        "32px",
+                        {
+                                "lineHeight": "40px",
+                                "fontWeight": "600"
+                        }
+                ],
+                "body-lg": [
+                        "18px",
+                        {
+                                "lineHeight": "28px",
+                                "fontWeight": "400"
+                        }
+                ],
+                "display-lg": [
+                        "40px",
+                        {
+                                "lineHeight": "52px",
+                                "fontWeight": "700"
+                        }
+                ]
+        }
+},
+    },
+  }
+</script>
+<style>
+        /* Base styles */
+        body {
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        /* Toggle Switch CSS */
+        .toggle-checkbox:checked {
+            right: 0;
+            border-color: #6D428F;
+        }
+        .toggle-checkbox:checked + .toggle-label {
+            background-color: #6D428F;
+        }
+        .toggle-checkbox:checked + .toggle-label:after {
+            transform: translateX(-100%);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="text-on-surface font-body-md min-h-screen pb-24 pt-20 flex justify-center bg-white">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-[#E1CCE8] dark:bg-surface-dim flat no shadows flex items-center justify-between px-margin-mobile h-16 max-w-[1280px] mx-auto left-0 right-0">
+<button aria-label="Leading Action" class="p-2 hover:bg-[#CCADD9]/50 transition-colors active:scale-95 transition-transform rounded-full flex items-center justify-center text-on-surface-variant dark:text-outline">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">target</span>
+</button>
+<div class="flex-1 text-center">
+<h1 class="font-display-lg text-display-lg font-bold text-[#6D428F] dark:text-primary-fixed m-0">GoalPath</h1>
+</div>
+<button aria-label="Trailing Action" class="p-2 hover:bg-[#CCADD9]/50 transition-colors active:scale-95 transition-transform rounded-full flex items-center justify-center text-on-surface-variant dark:text-outline">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">notifications</span>
+</button>
+</header>
+<!-- Main Content Canvas -->
+<main class="w-full max-w-lg mx-auto px-margin-mobile flex flex-col gap-lg">
+<!-- User Profile Section -->
+<section class="flex flex-col items-center justify-center mt-md text-center">
+<div class="relative w-24 h-24 mb-sm rounded-full overflow-hidden border-4 border-[#CCADD9] shadow-[0px_4px_20px_rgba(15,23,42,0.05)] bg-surface-container-high">
+<img alt="User Profile Image" class="object-cover w-full h-full" data-alt="A modern, high-quality professional portrait photo of a user for a profile picture, well-lit, soft lighting, neutral minimalist background, ensuring a clean and premium aesthetic fitting for a modern app." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCvWDM42S08jQn-nPOaseRNmxqtNkBlliAP63Hux_ZuqWn0v7Q_-XZF0jzU9K-qHb7Eq-wwEzsxXpL6y_82ZFX7Ovxbqm0mrs681npQ1GqgL1UwVN1UXSh5-fX1lmecklmJVvjl9G7U336ufjloBVzII5AgmVICJR39R6FiW0Kte2ipsKdVk0xCvY2J5FwkOH7NpYiIPgqODY4cilbTxu1D1NtPqAnHdrlUu61qTl2llg_FER_aFOgf">
+</div>
+<h2 class="font-title-md text-title-md text-on-surface mb-xs">أحمد محمد</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">ahmed.mohamed@example.com</p>
+</section>
+<!-- Settings List -->
+<section class="bg-[#CCADD9] rounded-xl shadow-[0px_4px_20px_rgba(15,23,42,0.05)] overflow-hidden">
+<ul class="flex flex-col">
+<!-- Notifications -->
+<li class="border-b border-[#E1CCE8]/50 last:border-0">
+<button class="w-full flex items-center justify-between px-md py-sm hover:bg-[#E1CCE8]/30 transition-colors active:bg-[#E1CCE8]/50">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-outline">notifications</span>
+<span class="font-label-md text-label-md text-on-surface">الإشعارات</span>
+</div>
+<span class="material-symbols-outlined text-outline-variant rotate-180">chevron_right</span>
+</button>
+</li>
+<!-- Language -->
+<li class="border-b border-[#E1CCE8]/50 last:border-0">
+<button class="w-full flex items-center justify-between px-md py-sm hover:bg-[#E1CCE8]/30 transition-colors active:bg-[#E1CCE8]/50">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-outline">language</span>
+<span class="font-label-md text-label-md text-on-surface">اللغة</span>
+</div>
+<div class="flex items-center gap-xs">
+<span class="font-body-md text-body-md text-on-surface-variant">العربية</span>
+<span class="material-symbols-outlined text-outline-variant rotate-180">chevron_right</span>
+</div>
+</button>
+</li>
+<!-- Dark Mode Toggle -->
+<li class="border-b border-[#E1CCE8]/50 last:border-0">
+<div class="w-full flex items-center justify-between px-md py-sm">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-outline">dark_mode</span>
+<span class="font-label-md text-label-md text-on-surface">الوضع الليلي</span>
+</div>
+<!-- Custom Toggle -->
+<div class="relative inline-block w-12 mr-2 align-middle select-none transition duration-200 ease-in">
+<input class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer border-surface-variant z-10 transition-transform duration-300 ease-in-out" id="dark-mode-toggle" name="toggle" type="checkbox">
+<label class="toggle-label block overflow-hidden h-6 rounded-full bg-[#E1CCE8] cursor-pointer transition-colors duration-300 ease-in-out" for="dark-mode-toggle"></label>
+</div>
+</div>
+</li>
+<!-- Account Management -->
+<li class="border-b border-[#E1CCE8]/50 last:border-0">
+<button class="w-full flex items-center justify-between px-md py-sm hover:bg-[#E1CCE8]/30 transition-colors active:bg-[#E1CCE8]/50">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-outline">manage_accounts</span>
+<span class="font-label-md text-label-md text-on-surface">إدارة الحساب</span>
+</div>
+<span class="material-symbols-outlined text-outline-variant rotate-180">chevron_right</span>
+</button>
+</li>
+</ul>
+</section>
+<!-- Logout Button -->
+<section class="mt-sm">
+<button class="w-full flex items-center justify-center gap-sm px-md py-sm bg-[#6D428F] text-white rounded-lg font-label-md text-label-md font-bold hover:bg-[#532D75] transition-colors active:scale-95">
+<span class="material-symbols-outlined">logout</span>
+                تسجيل الخروج
+            </button>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full z-50 rounded-t-xl bg-[#CCADD9] dark:bg-primary-container shadow-[0px_-4px_20px_rgba(15,23,42,0.05)] shadow-lg flex justify-around items-center h-20 px-2 pb-safe max-w-[1280px] mx-auto left-0 right-0 block md:hidden">
+<!-- Tab 1: Home -->
+<a class="flex flex-col items-center justify-center w-full h-full text-on-surface-variant dark:text-outline-variant hover:bg-[#E1CCE8]/50 dark:hover:bg-primary transition-all active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 0;">home</span>
+<span class="font-label-sm text-label-sm">Home</span>
+</a>
+<!-- Tab 2: Goals -->
+<a class="flex flex-col items-center justify-center w-full h-full text-on-surface-variant dark:text-outline-variant hover:bg-[#E1CCE8]/50 dark:hover:bg-primary transition-all active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 0;">checklist</span>
+<span class="font-label-sm text-label-sm">Goals</span>
+</a>
+<!-- Tab 3: Add (FAB style embedded in nav) -->
+<a class="flex flex-col items-center justify-center w-full h-full text-on-surface-variant dark:text-outline-variant hover:bg-[#E1CCE8]/50 dark:hover:bg-primary transition-all active:scale-90 transition-transform relative" href="#">
+<div class="absolute -top-4 bg-[#6D428F] hover:bg-[#532D75] text-white rounded-full p-2 shadow-lg transition-colors">
+<span class="material-symbols-outlined text-[32px]" style="font-variation-settings: 'FILL' 1;">add_circle</span>
+</div>
+<span class="font-label-sm text-label-sm mt-6 invisible">Add</span>
+</a>
+<!-- Tab 4: Reports -->
+<a class="flex flex-col items-center justify-center w-full h-full text-on-surface-variant dark:text-outline-variant hover:bg-[#E1CCE8]/50 dark:hover:bg-primary transition-all active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 0;">analytics</span>
+<span class="font-label-sm text-label-sm">Reports</span>
+</a>
+<!-- Tab 5: Profile (Active) -->
+<a class="flex flex-col items-center justify-center w-full h-full text-[#6D428F] font-bold border-t-2 border-[#6D428F] bg-[#CCADD9] dark:bg-primary-container hover:bg-[#E1CCE8]/50 dark:hover:bg-primary transition-all active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="font-label-sm text-label-sm text-[#6D428F]">Profile</span>
+</a>
+</nav>
+<!-- Desktop Sidebar Placeholder (Hidden on mobile, visible on md+) -->
+<aside class="hidden md:flex flex-col w-[280px] fixed top-0 right-0 h-screen bg-[#CCADD9] border-l border-[#E1CCE8] p-md z-40 pt-24">
+<!-- Desktop Navigation Items would go here, matching bottom nav semantics -->
+<nav class="flex flex-col gap-xs">
+<a class="flex items-center gap-sm p-sm rounded-lg text-on-surface-variant hover:bg-[#E1CCE8]/50 transition-colors" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-md text-label-md">Home</span>
+</a>
+<a class="flex items-center gap-sm p-sm rounded-lg text-on-surface-variant hover:bg-[#E1CCE8]/50 transition-colors" href="#">
+<span class="material-symbols-outlined">checklist</span>
+<span class="font-label-md text-label-md">Goals</span>
+</a>
+<a class="flex items-center gap-sm p-sm rounded-lg text-on-surface-variant hover:bg-[#E1CCE8]/50 transition-colors" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-label-md text-label-md">Reports</span>
+</a>
+<a class="flex items-center gap-sm p-sm rounded-lg bg-[#E1CCE8]/50 text-[#6D428F] font-bold transition-colors" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="font-label-md text-label-md">Profile</span>
+</a>
+</nav>
+</aside>
+
+
+</body></html>
