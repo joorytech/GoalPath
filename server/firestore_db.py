@@ -14,17 +14,43 @@ def get_firestore_db():
     global _db
     if _db is None:
         if not firebase_admin._apps:
-            # 1. Check environment variable FIREBASE_SERVICE_ACCOUNT (for Vercel/Cloud deployment)
-            env_sa = os.environ.get("FIREBASE_SERVICE_ACCOUNT")
-            if env_sa:
+            # 1. Check for explicit individual environment variables (Best for Vercel)
+            project_id = os.environ.get("FIREBASE_PROJECT_ID")
+            client_email = os.environ.get("FIREBASE_CLIENT_EMAIL")
+            private_key = os.environ.get("FIREBASE_PRIVATE_KEY")
+            
+            if project_id and client_email and private_key:
                 try:
-                    sa_info = json.loads(env_sa)
-                    cred = credentials.Certificate(sa_info)
+                    # Vercel sometimes escapes newlines in env vars
+                    private_key = private_key.replace("\\n", "\n")
+                    cred = credentials.Certificate({
+                        "type": "service_account",
+                        "project_id": project_id,
+                        "private_key": private_key,
+                        "client_email": client_email,
+                        "token_uri": "https://oauth2.googleapis.com/token"
+                    })
                     firebase_admin.initialize_app(cred)
                 except Exception as e:
-                    print(f"Failed to load FIREBASE_SERVICE_ACCOUNT from env: {e}")
+                    print(f"Failed to init Firebase from individual env vars: {e}")
             
-            # 2. Check local serviceAccountKey.json file
+            # 2. Check environment variable FIREBASE_SERVICE_ACCOUNT (JSON string fallback)
+            if not firebase_admin._apps:
+                env_sa = os.environ.get("FIREBASE_SERVICE_ACCOUNT")
+                if env_sa:
+                    try:
+                        import base64
+                        # Try parsing as JSON directly, if fails try Base64
+                        try:
+                            sa_info = json.loads(env_sa)
+                        except ValueError:
+                            sa_info = json.loads(base64.b64decode(env_sa).decode('utf-8'))
+                        cred = credentials.Certificate(sa_info)
+                        firebase_admin.initialize_app(cred)
+                    except Exception as e:
+                        print(f"Failed to load FIREBASE_SERVICE_ACCOUNT from env: {e}")
+            
+            # 3. Check local serviceAccountKey.json file (Local Development)
             if not firebase_admin._apps and os.path.exists(KEY_PATH):
                 try:
                     cred = credentials.Certificate(KEY_PATH)
@@ -32,13 +58,9 @@ def get_firestore_db():
                 except Exception as e:
                     print(f"Failed to load serviceAccountKey.json: {e}")
 
-            # 3. Fallback to default application credentials or project ID
+            # 4. Fail fast if no credentials could be loaded
             if not firebase_admin._apps:
-                try:
-                    project_id = os.environ.get("FIREBASE_PROJECT_ID", "goalpath-747c4")
-                    firebase_admin.initialize_app(options={"projectId": project_id})
-                except Exception as e:
-                    print(f"Fallback initialize_app failed: {e}")
+                raise ValueError("Missing Firebase credentials. Must provide FIREBASE_PROJECT_ID, FIREBASE_CLIENT_EMAIL, and FIREBASE_PRIVATE_KEY env vars in production, or a serviceAccountKey.json file locally.")
 
         _db = firestore.client()
     return _db
