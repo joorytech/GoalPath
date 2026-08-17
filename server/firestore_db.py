@@ -75,12 +75,21 @@ def get_next_id(collection_name):
 
 def create_user_achievements(user_id):
     db = get_firestore_db()
+    
+    # Calculate ach_id ONCE instead of 8 times (prevent Vercel 10s timeout)
+    ach_id = get_next_id("achievements")
+    
+    batch = db.batch()
+    has_updates = False
+    
     for code, title, desc, icon, pts in ACHIEVEMENT_TEMPLATES:
         aid = f"{user_id}_{code}"
         doc_ref = db.collection("achievements").document(aid)
+        
+        # In a batch we technically shouldn't do a get() in loop if we want max performance,
+        # but achievements are small. For safety, we only add if it doesn't exist.
         if not doc_ref.get().exists:
-            ach_id = get_next_id("achievements")
-            doc_ref.set({
+            batch.set(doc_ref, {
                 "id": ach_id,
                 "user_id": int(user_id),
                 "code": code,
@@ -91,6 +100,12 @@ def create_user_achievements(user_id):
                 "is_unlocked": 0,
                 "unlocked_at": None
             })
+            ach_id += 1
+            has_updates = True
+            
+    if has_updates:
+        batch.commit()
+
 
 def recalculate_goal_progress(goal_id, user_id=None):
     db = get_firestore_db()

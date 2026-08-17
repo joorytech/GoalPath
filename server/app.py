@@ -97,28 +97,65 @@ def update_user_profile():
 
 @app.route("/api/auth/login", methods=["POST"])
 def login():
-    data = request.json or {}
-    email = (data.get("email") or "").strip().lower()
-    name = (data.get("name") or "").strip()
-    password = data.get("password", "")
+    try:
+        data = request.json or {}
+        email = (data.get("email") or "").strip().lower()
+        name = (data.get("name") or "").strip()
+        password = data.get("password", "")
 
-    if not email:
-        email = f"user_{int(datetime.now().timestamp())}@goalpath.com"
+        if not email:
+            email = f"user_{int(datetime.now().timestamp())}@goalpath.com"
 
-    db = get_firestore_db()
-    users_query = db.collection("users").where("email", "==", email).limit(1).stream()
-    matched_users = [u.to_dict() for u in users_query]
+        db = get_firestore_db()
+        users_query = db.collection("users").where(filter=firestore.FieldFilter("email", "==", email)).limit(1).stream()
+        matched_users = [u.to_dict() for u in users_query]
 
-    if matched_users:
-        return jsonify({"status": "success", "user": matched_users[0]})
-    else:
+        if matched_users:
+            return jsonify({"status": "success", "user": matched_users[0]})
+        else:
+            user_id = get_next_id("users")
+            display_name = name or email.split("@")[0]
+            new_user = {
+                "id": user_id,
+                "name": display_name,
+                "email": email,
+                "password_hash": password or "pass123",
+                "avatar": None,
+                "points": 0,
+                "streak": 0,
+                "dark_mode": 0,
+                "notifications_enabled": 1,
+                "language": "ar",
+                "created_at": datetime.now().isoformat()
+            }
+            db.collection("users").document(str(user_id)).set(new_user)
+            create_user_achievements(user_id)
+            return jsonify({"status": "success", "user": new_user, "is_new": True})
+    except Exception as e:
+        import traceback
+        return jsonify({"error": "حدث خطأ داخلي أثناء تسجيل الدخول", "details": str(e), "trace": traceback.format_exc()}), 500
+
+@app.route("/api/auth/register", methods=["POST"])
+def register():
+    try:
+        data = request.json or {}
+        name = (data.get("name") or "").strip() or "مستخدم جديد"
+        email = (data.get("email") or "").strip().lower() or f"user_{int(datetime.now().timestamp())}@goalpath.com"
+        password = data.get("password", "pass123")
+
+        db = get_firestore_db()
+        users_query = db.collection("users").where(filter=firestore.FieldFilter("email", "==", email)).limit(1).stream()
+        matched_users = [u.to_dict() for u in users_query]
+
+        if matched_users:
+            return jsonify({"status": "success", "user": matched_users[0], "is_new": False})
+        
         user_id = get_next_id("users")
-        display_name = name or email.split("@")[0]
         new_user = {
             "id": user_id,
-            "name": display_name,
+            "name": name,
             "email": email,
-            "password_hash": password or "pass123",
+            "password_hash": password,
             "avatar": None,
             "points": 0,
             "streak": 0,
@@ -130,38 +167,9 @@ def login():
         db.collection("users").document(str(user_id)).set(new_user)
         create_user_achievements(user_id)
         return jsonify({"status": "success", "user": new_user, "is_new": True})
-
-@app.route("/api/auth/register", methods=["POST"])
-def register():
-    data = request.json or {}
-    name = (data.get("name") or "").strip() or "مستخدم جديد"
-    email = (data.get("email") or "").strip().lower() or f"user_{int(datetime.now().timestamp())}@goalpath.com"
-    password = data.get("password", "pass123")
-
-    db = get_firestore_db()
-    users_query = db.collection("users").where("email", "==", email).limit(1).stream()
-    matched_users = [u.to_dict() for u in users_query]
-
-    if matched_users:
-        return jsonify({"status": "success", "user": matched_users[0], "is_new": False})
-    
-    user_id = get_next_id("users")
-    new_user = {
-        "id": user_id,
-        "name": name,
-        "email": email,
-        "password_hash": password,
-        "avatar": None,
-        "points": 0,
-        "streak": 0,
-        "dark_mode": 0,
-        "notifications_enabled": 1,
-        "language": "ar",
-        "created_at": datetime.now().isoformat()
-    }
-    db.collection("users").document(str(user_id)).set(new_user)
-    create_user_achievements(user_id)
-    return jsonify({"status": "success", "user": new_user, "is_new": True})
+    except Exception as e:
+        import traceback
+        return jsonify({"error": "حدث خطأ داخلي أثناء التسجيل", "details": str(e), "trace": traceback.format_exc()}), 500
 
 # 2. Dynamic Dashboard Aggregation
 @app.route("/api/dashboard", methods=["GET"])
