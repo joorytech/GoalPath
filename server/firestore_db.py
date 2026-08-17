@@ -21,6 +21,9 @@ def get_firestore_db():
             
             if project_id and client_email and private_key:
                 try:
+                    project_id = project_id.strip().strip('"').strip("'")
+                    client_email = client_email.strip().strip('"').strip("'")
+                    private_key = private_key.strip().strip('"').strip("'")
                     # Vercel sometimes escapes newlines in env vars
                     private_key = private_key.replace("\\n", "\n")
                     cred = credentials.Certificate({
