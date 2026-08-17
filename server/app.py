@@ -107,7 +107,7 @@ def login():
             email = f"user_{int(datetime.now().timestamp())}@goalpath.com"
 
         db = get_firestore_db()
-        users_query = db.collection("users").where(filter=firestore.FieldFilter("email", "==", email)).limit(1).stream()
+        users_query = db.collection("users").where("email", "==", email).limit(1).stream()
         matched_users = [u.to_dict() for u in users_query]
 
         if matched_users:
@@ -144,7 +144,7 @@ def register():
         password = data.get("password", "pass123")
 
         db = get_firestore_db()
-        users_query = db.collection("users").where(filter=firestore.FieldFilter("email", "==", email)).limit(1).stream()
+        users_query = db.collection("users").where("email", "==", email).limit(1).stream()
         matched_users = [u.to_dict() for u in users_query]
 
         if matched_users:
