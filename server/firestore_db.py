@@ -1,5 +1,6 @@
 import os
 import sys
+import json
 import firebase_admin
 from firebase_admin import credentials, firestore
 from datetime import datetime, date
@@ -13,8 +14,32 @@ def get_firestore_db():
     global _db
     if _db is None:
         if not firebase_admin._apps:
-            cred = credentials.Certificate(KEY_PATH)
-            firebase_admin.initialize_app(cred)
+            # 1. Check environment variable FIREBASE_SERVICE_ACCOUNT (for Vercel/Cloud deployment)
+            env_sa = os.environ.get("FIREBASE_SERVICE_ACCOUNT")
+            if env_sa:
+                try:
+                    sa_info = json.loads(env_sa)
+                    cred = credentials.Certificate(sa_info)
+                    firebase_admin.initialize_app(cred)
+                except Exception as e:
+                    print(f"Failed to load FIREBASE_SERVICE_ACCOUNT from env: {e}")
+            
+            # 2. Check local serviceAccountKey.json file
+            if not firebase_admin._apps and os.path.exists(KEY_PATH):
+                try:
+                    cred = credentials.Certificate(KEY_PATH)
+                    firebase_admin.initialize_app(cred)
+                except Exception as e:
+                    print(f"Failed to load serviceAccountKey.json: {e}")
+
+            # 3. Fallback to default application credentials or project ID
+            if not firebase_admin._apps:
+                try:
+                    project_id = os.environ.get("FIREBASE_PROJECT_ID", "goalpath-747c4")
+                    firebase_admin.initialize_app(options={"projectId": project_id})
+                except Exception as e:
+                    print(f"Fallback initialize_app failed: {e}")
+
         _db = firestore.client()
     return _db
 
