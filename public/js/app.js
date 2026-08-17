@@ -17,8 +17,14 @@ document.addEventListener('DOMContentLoaded', async () => {
   setupGlobalEvents();
   await loadUserData();
   
-  // Start on the Welcome / Splash screen as the first step
-  await navigateTo('welcome');
+  // If user is already logged in (has valid session), go to dashboard
+  const storedId = localStorage.getItem('goalpath_user_id');
+  if (storedId && AppState.user) {
+    await navigateTo('dashboard');
+  } else {
+    // Start on the Welcome / Splash screen
+    await navigateTo('welcome');
+  }
 });
 
 // Toast notification helper
@@ -50,11 +56,23 @@ function showToast(message, icon = 'check_circle', isError = false) {
 // User Profile & Settings Sync
 async function loadUserData() {
   try {
-    const user = await GoalPathAPI.getUserProfile();
-    AppState.user = user;
-    if (user && user.id) {
-      localStorage.setItem('goalpath_user_id', user.id);
+    // Only fetch if we have a valid user ID stored
+    const storedId = localStorage.getItem('goalpath_user_id');
+    if (!storedId) {
+      // No user logged in yet — stay on auth/welcome screen
+      return;
     }
+    const user = await GoalPathAPI.getUserProfile();
+    // If API returns error (e.g. 404), clear stale data
+    if (!user || user.error || !user.id) {
+      console.warn('Invalid user profile response, clearing stored session.');
+      localStorage.removeItem('goalpath_user_id');
+      localStorage.removeItem('goalpath_user_name');
+      localStorage.removeItem('goalpath_user_email');
+      return;
+    }
+    AppState.user = user;
+    localStorage.setItem('goalpath_user_id', user.id);
     updateUserDisplays(user);
     if (user && user.dark_mode) {
       document.documentElement.classList.add('dark');
@@ -473,7 +491,15 @@ async function handleLoginSubmit(e) {
   }
 }
 
-function handleLogout() {
+async function handleLogout() {
+  // Sign out from Firebase Auth first
+  if (window.FirebaseAuth && window.FirebaseAuth.signOut && window.FirebaseAuth.auth) {
+    try {
+      await window.FirebaseAuth.signOut(window.FirebaseAuth.auth);
+    } catch (fbErr) {
+      console.warn('Firebase signOut error (non-critical):', fbErr);
+    }
+  }
   localStorage.removeItem('goalpath_user_id');
   localStorage.removeItem('goalpath_user_name');
   localStorage.removeItem('goalpath_user_email');
@@ -1274,9 +1300,25 @@ function setupGlobalEvents() {
     };
   }
 
+  // Wire up auth forms directly (register and login have their own submit handlers)
+  const regForm = document.getElementById('register-form');
+  if (regForm && !regForm.onsubmit) regForm.onsubmit = handleRegisterSubmit;
+
+  const loginForm = document.getElementById('login-form');
+  if (loginForm && !loginForm.onsubmit) loginForm.onsubmit = handleLoginSubmit;
+
+  // Legacy combined form support
   const authForm = document.getElementById('auth-submit-form');
   if (authForm) {
-    authForm.onsubmit = handleAuthSubmit;
+    authForm.onsubmit = (e) => {
+      e.preventDefault();
+      const loginCard = document.getElementById('auth-login-card');
+      if (loginCard && !loginCard.classList.contains('hidden')) {
+        handleLoginSubmit(e);
+      } else {
+        handleRegisterSubmit(e);
+      }
+    };
   }
 }
 

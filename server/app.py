@@ -24,26 +24,33 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PUBLIC_DIR = os.path.join(BASE_DIR, "public")
 
 app = Flask(__name__, static_folder=PUBLIC_DIR)
-CORS(app)
 
-# Ensure DB initialized on startup
-with app.app_context():
-    init_db()
+# Allow CORS from any origin (required for Vercel deployment)
+# Specify explicit origins if you want to restrict in production
+CORS(app, origins="*", supports_credentials=False)
+
+# Ensure DB initialized on startup (only when not in Vercel cold-start without credentials)
+try:
+    with app.app_context():
+        init_db()
+except Exception as e:
+    print(f"DB init warning (may be missing credentials): {e}")
 
 # --- Helper Functions ---
 
 def get_current_user_id():
-    """Extract user_id from request headers or fallback to 1"""
+    """Extract user_id from request headers. Returns None if not provided."""
     user_id = request.headers.get("X-User-Id")
-    if user_id and str(user_id).isdigit():
+    if user_id and str(user_id).isdigit() and int(user_id) > 0:
         return int(user_id)
-    
-    db = get_firestore_db()
-    users_docs = db.collection("users").order_by("id").limit(1).stream()
-    users = [u.to_dict() for u in users_docs]
-    if users:
-        return users[0].get("id", 1)
-    return 1
+    return None
+
+def require_user_id():
+    """Returns user_id or a 401 JSON response tuple."""
+    uid = get_current_user_id()
+    if uid is None:
+        return None, jsonify({"error": "مطلوب تسجيل الدخول", "code": "auth/unauthenticated"}), 401
+    return uid, None, None
 
 # --- API Routes ---
 
@@ -55,22 +62,21 @@ def health():
 @app.route("/api/auth/user", methods=["GET"])
 def get_user_profile():
     user_id = get_current_user_id()
+    if user_id is None:
+        return jsonify({"error": "مطلوب تسجيل الدخول"}), 401
     db = get_firestore_db()
     doc = db.collection("users").document(str(user_id)).get()
     
     if doc.exists:
         return jsonify(doc.to_dict())
         
-    # Fallback to first user
-    users_docs = db.collection("users").order_by("id").limit(1).stream()
-    for u in users_docs:
-        return jsonify(u.to_dict())
-        
     return jsonify({"error": "User not found"}), 404
 
 @app.route("/api/auth/user", methods=["PUT"])
 def update_user_profile():
     user_id = get_current_user_id()
+    if user_id is None:
+        return jsonify({"error": "مطلوب تسجيل الدخول"}), 401
     data = request.json or {}
     db = get_firestore_db()
     
@@ -161,6 +167,8 @@ def register():
 @app.route("/api/dashboard", methods=["GET"])
 def get_dashboard_data():
     user_id = get_current_user_id()
+    if user_id is None:
+        return jsonify({"error": "مطلوب تسجيل الدخول"}), 401
     db = get_firestore_db()
 
     # User details
@@ -229,6 +237,8 @@ def get_dashboard_data():
 @app.route("/api/goals", methods=["GET"])
 def list_goals():
     user_id = get_current_user_id()
+    if user_id is None:
+        return jsonify({"error": "مطلوب تسجيل الدخول"}), 401
     db = get_firestore_db()
 
     goals_docs = db.collection("goals").where("user_id", "==", int(user_id)).stream()
@@ -248,6 +258,8 @@ def list_goals():
 @app.route("/api/goals", methods=["POST"])
 def create_goal():
     user_id = get_current_user_id()
+    if user_id is None:
+        return jsonify({"error": "مطلوب تسجيل الدخول"}), 401
     data = request.json or {}
     title = data.get("title", "").strip()
     if not title:
@@ -363,6 +375,8 @@ def create_goal():
 @app.route("/api/goals/<int:goal_id>", methods=["GET"])
 def get_goal_details(goal_id):
     user_id = get_current_user_id()
+    if user_id is None:
+        return jsonify({"error": "مطلوب تسجيل الدخول"}), 401
     db = get_firestore_db()
 
     goal_doc = db.collection("goals").document(str(goal_id)).get()
@@ -396,6 +410,8 @@ def get_goal_details(goal_id):
 @app.route("/api/goals/<int:goal_id>", methods=["DELETE"])
 def delete_goal(goal_id):
     user_id = get_current_user_id()
+    if user_id is None:
+        return jsonify({"error": "مطلوب تسجيل الدخول"}), 401
     db = get_firestore_db()
 
     # Delete goal doc
@@ -417,6 +433,8 @@ def delete_goal(goal_id):
 @app.route("/api/tasks", methods=["GET"])
 def list_tasks():
     user_id = get_current_user_id()
+    if user_id is None:
+        return jsonify({"error": "مطلوب تسجيل الدخول"}), 401
     today_only = request.args.get("today", "").lower() == "true"
     goal_id = request.args.get("goal_id")
 
@@ -463,6 +481,8 @@ def list_tasks():
 @app.route("/api/tasks", methods=["POST"])
 def create_task():
     user_id = get_current_user_id()
+    if user_id is None:
+        return jsonify({"error": "مطلوب تسجيل الدخول"}), 401
     data = request.json or {}
     title = data.get("title", "").strip()
     if not title:
@@ -506,6 +526,8 @@ def create_task():
 @app.route("/api/tasks/<int:task_id>/toggle", methods=["POST", "PATCH"])
 def toggle_task(task_id):
     user_id = get_current_user_id()
+    if user_id is None:
+        return jsonify({"error": "مطلوب تسجيل الدخول"}), 401
     db = get_firestore_db()
     
     task_doc = db.collection("tasks").document(str(task_id)).get()
@@ -595,6 +617,8 @@ def toggle_task(task_id):
 @app.route("/api/goals/<int:goal_id>/complete", methods=["POST"])
 def complete_goal(goal_id):
     user_id = get_current_user_id()
+    if user_id is None:
+        return jsonify({"error": "مطلوب تسجيل الدخول"}), 401
     db = get_firestore_db()
 
     goal_doc = db.collection("goals").document(str(goal_id)).get()
@@ -655,6 +679,8 @@ def complete_goal(goal_id):
 @app.route("/api/tasks/<int:task_id>", methods=["DELETE"])
 def delete_task(task_id):
     user_id = get_current_user_id()
+    if user_id is None:
+        return jsonify({"error": "مطلوب تسجيل الدخول"}), 401
     db = get_firestore_db()
 
     task_doc = db.collection("tasks").document(str(task_id)).get()
@@ -672,6 +698,8 @@ def delete_task(task_id):
 @app.route("/api/next-step", methods=["GET"])
 def get_next_step():
     user_id = get_current_user_id()
+    if user_id is None:
+        return jsonify({"error": "مطلوب تسجيل الدخول"}), 401
     db = get_firestore_db()
 
     tasks_docs = db.collection("tasks").where("user_id", "==", int(user_id)).where("is_completed", "==", 0).stream()
@@ -722,6 +750,8 @@ def ai_diagnose():
 @app.route("/api/ai/apply-solution", methods=["POST"])
 def ai_apply_solution():
     user_id = get_current_user_id()
+    if user_id is None:
+        return jsonify({"error": "مطلوب تسجيل الدخول"}), 401
     data = request.json or {}
     reason = data.get("reason", "لم يكن لدي وقت")
     goal_id = data.get("goal_id")
@@ -766,6 +796,8 @@ def ai_apply_solution():
 @app.route("/api/reports", methods=["GET"])
 def get_reports():
     user_id = get_current_user_id()
+    if user_id is None:
+        return jsonify({"error": "مطلوب تسجيل الدخول"}), 401
     db = get_firestore_db()
 
     tasks_docs = db.collection("tasks").where("user_id", "==", int(user_id)).stream()
@@ -799,6 +831,8 @@ def get_reports():
 @app.route("/api/achievements", methods=["GET"])
 def get_achievements():
     user_id = get_current_user_id()
+    if user_id is None:
+        return jsonify({"error": "مطلوب تسجيل الدخول"}), 401
     db = get_firestore_db()
 
     user_doc = db.collection("users").document(str(user_id)).get()
